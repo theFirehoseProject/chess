@@ -1,3 +1,19 @@
 // Place all the styles related to the static_pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.container {
+  padding: 30px 0px 0px 50px;
+}
+
+.board{
+}
+
+.space {
+  border:1px solid gray;
+  height: 75px;
+}
+
+.black {
+  background-color: #000000
+}
