@@ -17,6 +17,8 @@
 // to force Bootstrap to do the black cells
 .info{
 	background-color: #000000 !important;
+	color: white;
+
 }
 // this didn't work, so overrode the derault 'info' class definition
 // .chess td .black {
