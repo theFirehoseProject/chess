@@ -5,52 +5,53 @@
 	 <table class="board table chess">
 	 <tr class="row row7">
 	 <td class="col-xs-1 space 07 white">
+
 	 	<% @pieces.each do |piece| %>
 	    <% if piece.x_coord == 0 && piece.y_coord == 7 %> 
-	    	<%= piece.color %> <%=piece.piece_type %></i><br />
+	    <%= image_tag(piece.image) %></i><br />
 	    <% end%>
 		<% end %></td>
 	 <td class="col-xs-1 space 17 black info">
 	 <% @pieces.each do |piece| %>
 	    <% if piece.x_coord == 1 && piece.y_coord == 7 %> 
-	    	<%= piece.color %> <%=piece.piece_type %></i><br />
+	    	<%= image_tag(piece.image) %>
 	    <% end%>
 		<% end %></td></td>
 	 <td class="col-xs-1 space 27 white">
 		<% @pieces.each do |piece| %>
 	    <% if piece.x_coord == 2 && piece.y_coord == 7 %> 
-	    	<%= piece.color %> <%=piece.piece_type %></i><br />
+	    	<%= image_tag(piece.image) %>
 	    <% end%>
 		<% end %></td>
 	 </td>
 	 <td class="col-xs-1 space 37 black info">
 	 <% @pieces.each do |piece| %>
 	    <% if piece.x_coord == 3 && piece.y_coord == 7 %> 
-	    	<%= piece.color %> <%=piece.piece_type %></i><br />
+	    	<%= image_tag(piece.image) %>
 	    <% end%>
 		<% end %></td></td>
 	 <td class="col-xs-1 space 47 white">
 	 <% @pieces.each do |piece| %>
 	    <% if piece.x_coord == 4 && piece.y_coord == 7 %> 
-	    	<%= piece.color %> <%=piece.piece_type %></i><br />
+	    	<%= image_tag(piece.image) %>
 	    <% end%>
 		<% end %></td></td>
 	 <td class="col-xs-1 space 57 black info">
 	 <% @pieces.each do |piece| %>
 	    <% if piece.x_coord == 5 && piece.y_coord == 7 %> 
-	    	<%= piece.color %> <%=piece.piece_type %></i><br />
+	    	<%= image_tag(piece.image) %>
 	    <% end%>
 		<% end %></td></td>
 	 <td class="col-xs-1 space 67 white">
 	 <% @pieces.each do |piece| %>
 	    <% if piece.x_coord == 6 && piece.y_coord == 7 %> 
-	    	<%= piece.color %> <%=piece.piece_type %></i><br />
+	    	<%= image_tag(piece.image) %>
 	    <% end%>
 		<% end %></td></td>
 	 <td class="col-xs-1 space 77 black info">
-	 <% @pieces.each do |piece| %>
+		 <% @pieces.each do |piece| %>
 	    <% if piece.x_coord == 7 && piece.y_coord == 7 %> 
-	    	<%= piece.color %> <%=piece.piece_type %></i><br />
+	    	<%= image_tag(piece.image) %>
 	    <% end%>
 		<% end %></td></td>
 	 </tr>
@@ -58,50 +59,50 @@
 	 <td class="col-xs-1 space 06 black info">
 	 <% @pieces.each do |piece| %>
 	    <% if piece.x_coord == 0 && piece.y_coord == 6 %> 
-	    	<%= piece.color %> <%=piece.piece_type %></i><br />
+	    	<%= image_tag(piece.image) %>
 	    <% end%>
 		<% end %></td></td>
 	 <td class="col-xs-1 space 16 white">
 	 <% @pieces.each do |piece| %>
 	    <% if piece.x_coord == 1 && piece.y_coord == 6 %> 
-	    	<%= piece.color %> <%=piece.piece_type %></i><br />
+	    	<%= image_tag(piece.image) %>
 	    <% end%>
 		<% end %></td>
 	 <td class="col-xs-1 space 26 black info">
 	 <% @pieces.each do |piece| %>
 	    <% if piece.x_coord == 1 && piece.y_coord == 6 %> 
-	    	<%= piece.color %> <%=piece.piece_type %></i><br />
+	    	<%= image_tag(piece.image) %>
 	    <% end%>
 		<% end %></td>
 	 <td class="col-xs-1 space 36 white">
 	 <% @pieces.each do |piece| %>
 	    <% if piece.x_coord == 3 && piece.y_coord == 6 %> 
-	    	<%= piece.color %> <%=piece.piece_type %></i><br />
+	    	<%= image_tag(piece.image) %>
 	    <% end%>
 		<% end %></td>
 	 <td class="col-xs-1 space 46 black info">
 	<% @pieces.each do |piece| %>
 	    <% if piece.x_coord == 4 && piece.y_coord == 6 %> 
-	    	<%= piece.color %> <%=piece.piece_type %></i><br />
+	    	<%= image_tag(piece.image) %>
 	    <% end%>
 		<% end %>
 	 </td>
 	 <td class="col-xs-1 space 56 white">
 	 <% @pieces.each do |piece| %>
 	    <% if piece.x_coord == 5 && piece.y_coord == 6 %> 
-	    	<%= piece.color %> <%=piece.piece_type %></i><br />
+	    	<%= image_tag(piece.image) %>
 	    <% end%>
 		<% end %></td>
 	 <td class="col-xs-1 space 66 black info">
 	 <% @pieces.each do |piece| %>
 	    <% if piece.x_coord == 6 && piece.y_coord == 6 %> 
-	    	<%= piece.color %> <%=piece.piece_type %></i><br />
+	    	<%= image_tag(piece.image) %>
 	    <% end%>
 		<% end %></td>
 	 <td class="col-xs-1 space 76 white">
 	<% @pieces.each do |piece| %>
 	    <% if piece.x_coord == 7 && piece.y_coord == 6 %> 
-	    	<%= piece.color %> <%=piece.piece_type %></i><br />
+	    	<%= image_tag(piece.image) %>
 	    <% end%>
 		<% end %>
 	 </td>
@@ -110,55 +111,55 @@
 	 <td class="col-xs-1 space 05 white">
 	 <% @pieces.each do |piece| %>
 	    <% if piece.x_coord == 0 && piece.y_coord == 5 %> 
-	    	<%= piece.color %> <%=piece.piece_type %></i><br />
+	    	<%= image_tag(piece.image) %>
 	    <% end%>
 		<% end %>
 	</td>
 	 <td class="col-xs-1 space 15 black info">
 	 <% @pieces.each do |piece| %>
 	    <% if piece.x_coord == 1 && piece.y_coord == 5 %> 
-	    	<%= piece.color %> <%=piece.piece_type %></i><br />
+	    	<%= image_tag(piece.image) %>
 	    <% end%>
 		<% end %>
 	</td>
 	 <td class="col-xs-1 space 25 white">
 	<% @pieces.each do |piece| %>
 	    <% if piece.x_coord == 2 && piece.y_coord == 5 %> 
-	    	<%= piece.color %> <%=piece.piece_type %></i><br />
+	    	<%= image_tag(piece.image) %>
 	    <% end%>
 		<% end %>
 	 </td>
 	 <td class="col-xs-1 space 35 black info">
 	<% @pieces.each do |piece| %>
 	    <% if piece.x_coord == 3 && piece.y_coord == 5 %> 
-	    	<%= piece.color %> <%=piece.piece_type %></i><br />
+	    	<%= image_tag(piece.image) %>
 	    <% end%>
 		<% end %>
 	 </td>
 	 <td class="col-xs-1 space 45 white">
 	<% @pieces.each do |piece| %>
 	    <% if piece.x_coord == 4 && piece.y_coord == 5 %> 
-	    	<%= piece.color %> <%=piece.piece_type %></i><br />
+	    	<%= image_tag(piece.image) %>
 	    <% end%>
 		<% end %>
 	 </td>
 	 <td class="col-xs-1 space 55 black info">
 	 <% @pieces.each do |piece| %>
 	    <% if piece.x_coord == 5 && piece.y_coord == 5 %> 
-	    	<%= piece.color %> <%=piece.piece_type %></i><br />
+	    	<%= image_tag(piece.image) %>
 	    <% end%>
 		<% end %></td>
 	 <td class="col-xs-1 space 65 white">
 	<% @pieces.each do |piece| %>
 	    <% if piece.x_coord == 6 && piece.y_coord == 5 %> 
-	    	<%= piece.color %> <%=piece.piece_type %></i><br />
+	    	<%= image_tag(piece.image) %>
 	    <% end%>
 		<% end %>
 	 </td>
 	 <td class="col-xs-1 space 75 black info">
 	<% @pieces.each do |piece| %>
 	    <% if piece.x_coord == 7 && piece.y_coord == 5 %> 
-	    	<%= piece.color %> <%=piece.piece_type %></i><br />
+	    	<%= image_tag(piece.image) %>
 	    <% end%>
 		<% end %>
 	 </td>
@@ -167,56 +168,56 @@
 	 <td class="col-xs-1 space 04 black info">
 	<% @pieces.each do |piece| %>
 	    <% if piece.x_coord == 0 && piece.y_coord == 4 %> 
-	    	<%= piece.color %> <%=piece.piece_type %></i><br />
+	    	<%= image_tag(piece.image) %>
 	    <% end%>
 		<% end %>
 	 </td>
 	 <td class="col-xs-1 space 14 white">
 	 <% @pieces.each do |piece| %>
 	    <% if piece.x_coord == 1 && piece.y_coord == 4 %> 
-	    	<%= piece.color %> <%=piece.piece_type %></i><br />
+	    	<%= image_tag(piece.image) %>
 	    <% end%>
 		<% end %>
 	</td>
 	 <td class="col-xs-1 space 24 black info">
 	<% @pieces.each do |piece| %>
 	    <% if piece.x_coord == 2 && piece.y_coord == 4 %> 
-	    	<%= piece.color %> <%=piece.piece_type %></i><br />
+	    	<%= image_tag(piece.image) %>
 	    <% end%>
 		<% end %>
 	 </td>
 	 <td class="col-xs-1 space 34 white">
 	<% @pieces.each do |piece| %>
 	    <% if piece.x_coord == 3 && piece.y_coord == 4 %> 
-	    	<%= piece.color %> <%=piece.piece_type %></i><br />
+	    	<%= image_tag(piece.image) %>
 	    <% end%>
 		<% end %>
 	 </td>
 	 <td class="col-xs-1 space 44 black info">
 	<% @pieces.each do |piece| %>
 	    <% if piece.x_coord == 4 && piece.y_coord == 4 %> 
-	    	<%= piece.color %> <%=piece.piece_type %></i><br />
+	    	<%= image_tag(piece.image) %>
 	    <% end%>
 		<% end %>
 	 </td>
 	 <td class="col-xs-1 space 54 white">
 	<% @pieces.each do |piece| %>
 	    <% if piece.x_coord == 5 && piece.y_coord == 4 %> 
-	    	<%= piece.color %> <%=piece.piece_type %></i><br />
+	    	<%= image_tag(piece.image) %>
 	    <% end%>
 		<% end %>
 	 </td>
 	 <td class="col-xs-1 space 64 black info">
 	<% @pieces.each do |piece| %>
 	    <% if piece.x_coord == 6 && piece.y_coord == 4 %> 
-	    	<%= piece.color %> <%=piece.piece_type %></i><br />
+	    	<%= image_tag(piece.image) %>
 	    <% end%>
 		<% end %>
 	 </td>
 	 <td class="col-xs-1 space 74 white">
 	<% @pieces.each do |piece| %>
 	    <% if piece.x_coord == 7 && piece.y_coord == 4 %> 
-	    	<%= piece.color %> <%=piece.piece_type %></i><br />
+	    	<%= image_tag(piece.image) %>
 	    <% end%>
 		<% end %>
 	 </td>
@@ -225,56 +226,56 @@
 	 <td class="col-xs-1 space 03 white">
 	<% @pieces.each do |piece| %>
 	    <% if piece.x_coord == 0 && piece.y_coord == 3 %> 
-	    	<%= piece.color %> <%=piece.piece_type %></i><br />
+	    	<%= image_tag(piece.image) %>
 	    <% end%>
 		<% end %>
 	 </td>
 	 <td class="col-xs-1 space 13 black info">
 	<% @pieces.each do |piece| %>
 	    <% if piece.x_coord == 1 && piece.y_coord == 3 %> 
-	    	<%= piece.color %> <%=piece.piece_type %></i><br />
+	    	<%= image_tag(piece.image) %>
 	    <% end%>
 		<% end %>
 	 </td>
 	 <td class="col-xs-1 space 23 white">
 	 <% @pieces.each do |piece| %>
 	    <% if piece.x_coord == 2 && piece.y_coord == 3 %> 
-	    	<%= piece.color %> <%=piece.piece_type %></i><br />
+	    	<%= image_tag(piece.image) %>
 	    <% end%>
 		<% end %>
 	</td>
 	 <td class="col-xs-1 space 33 black info">
 	<% @pieces.each do |piece| %>
 	    <% if piece.x_coord == 3 && piece.y_coord == 3 %> 
-	    	<%= piece.color %> <%=piece.piece_type %></i><br />
+	    	<%= image_tag(piece.image) %>
 	    <% end%>
 		<% end %>
 	 </td>
 	 <td class="col-xs-1 space 43 white">
 	<% @pieces.each do |piece| %>
 	    <% if piece.x_coord == 4 && piece.y_coord == 3 %> 
-	    	<%= piece.color %> <%=piece.piece_type %></i><br />
+	    	<%= image_tag(piece.image) %>
 	    <% end%>
 		<% end %>
 	 </td>
 	 <td class="col-xs-1 space 53 black info">
 	 <% @pieces.each do |piece| %>
 	    <% if piece.x_coord == 5 && piece.y_coord == 3 %> 
-	    	<%= piece.color %> <%=piece.piece_type %></i><br />
+	    	<%= image_tag(piece.image) %>
 	    <% end%>
 		<% end %>
 	</td>
 	 <td class="col-xs-1 space 63 white">
 	<% @pieces.each do |piece| %>
 	    <% if piece.x_coord == 6 && piece.y_coord == 3 %> 
-	    	<%= piece.color %> <%=piece.piece_type %></i><br />
+	    	<%= image_tag(piece.image) %>
 	    <% end%>
 		<% end %>
 	 </td>
 	 <td class="col-xs-1 space 73 black info">
 	<% @pieces.each do |piece| %>
 	    <% if piece.x_coord == 7 && piece.y_coord == 3 %> 
-	    	<%= piece.color %> <%=piece.piece_type %></i><br />
+	    	<%= image_tag(piece.image) %>
 	    <% end%>
 		<% end %>
 	 </td>
@@ -283,56 +284,56 @@
 	 <td class="col-xs-1 space 02 black info">
 	<% @pieces.each do |piece| %>
 	    <% if piece.x_coord == 0 && piece.y_coord == 2 %> 
-	    	<%= piece.color %> <%=piece.piece_type %></i><br />
+	    	<%= image_tag(piece.image) %>
 	    <% end%>
 		<% end %>
 	 </td>
 	 <td class="col-xs-1 space 12 white">
 	<% @pieces.each do |piece| %>
 	    <% if piece.x_coord == 1 && piece.y_coord == 2 %> 
-	    	<%= piece.color %> <%=piece.piece_type %></i><br />
+	    	<%= image_tag(piece.image) %>
 	    <% end%>
 		<% end %>
 	 </td>
 	 <td class="col-xs-1 space 22 black info">
 	 	<% @pieces.each do |piece| %>
 	    <% if piece.x_coord == 2 && piece.y_coord == 2 %> 
-	    	<%= piece.color %> <%=piece.piece_type %></i><br />
+	    	<%= image_tag(piece.image) %>
 	    <% end%>
 		<% end %>
 	 </td>
 	 <td class="col-xs-1 space 32 white">
 	<% @pieces.each do |piece| %>
 	    <% if piece.x_coord == 3 && piece.y_coord == 2 %> 
-	    	<%= piece.color %> <%=piece.piece_type %></i><br />
+	    	<%= image_tag(piece.image) %>
 	    <% end%>
 		<% end %>
 	 </td>
 	 <td class="col-xs-1 space 42 black info">
 	<% @pieces.each do |piece| %>
 	    <% if piece.x_coord == 4 && piece.y_coord == 2 %> 
-	    	<%= piece.color %> <%=piece.piece_type %></i><br />
+	    	<%= image_tag(piece.image) %>
 	    <% end%>
 		<% end %>
 	 </td>
 	 <td class="col-xs-1 space 52 white">
 	 <% @pieces.each do |piece| %>
 	    <% if piece.x_coord == 5 && piece.y_coord == 2 %> 
-	    	<%= piece.color %> <%=piece.piece_type %></i><br />
+	    	<%= image_tag(piece.image) %>
 	    <% end%>
 		<% end %>
 	</td>
 	 <td class="col-xs-1 space 62 black info">
 	 <% @pieces.each do |piece| %>
 	    <% if piece.x_coord ==6 && piece.y_coord == 2 %> 
-	    	<%= piece.color %> <%=piece.piece_type %></i><br />
+	    	<%= image_tag(piece.image) %>
 	    <% end%>
 		<% end %>
 	</td>
 	 <td class="col-xs-1 space 72 white">
 	<% @pieces.each do |piece| %>
 	    <% if piece.x_coord == 7 && piece.y_coord == 2 %> 
-	    	<%= piece.color %> <%=piece.piece_type %></i><br />
+	    	<%= image_tag(piece.image) %>
 	    <% end%>
 		<% end %>
 	 </td>
@@ -341,56 +342,56 @@
 	 <td class="col-xs-1 space 01 white">
 	<% @pieces.each do |piece| %>
 	    <% if piece.x_coord == 0 && piece.y_coord == 1 %> 
-	    	<%= piece.color %> <%=piece.piece_type %></i><br />
+	    	<%= image_tag(piece.image) %>
 	    <% end%>
 		<% end %>
 	 </td>
 	 <td class="col-xs-1 space 11 black info">
 	<% @pieces.each do |piece| %>
 	    <% if piece.x_coord == 1 && piece.y_coord == 1 %> 
-	    	<%= piece.color %> <%=piece.piece_type %></i><br />
+	    	<%= image_tag(piece.image) %>
 	    <% end%>
 		<% end %>
 	 </td>
 	 <td class="col-xs-1 space 21 white">
 	 <% @pieces.each do |piece| %>
 	    <% if piece.x_coord == 2 && piece.y_coord == 1 %> 
-	    	<%= piece.color %> <%=piece.piece_type %></i><br />
+	    	<%= image_tag(piece.image) %>
 	    <% end%>
 		<% end %>
 	</td>
 	 <td class="col-xs-1 space 31 black info">
 	<% @pieces.each do |piece| %>
 	    <% if piece.x_coord == 3 && piece.y_coord == 1 %> 
-	    	<%= piece.color %> <%=piece.piece_type %></i><br />
+	    	<%= image_tag(piece.image) %>
 	    <% end%>
 		<% end %>
 	 </td>
 	 <td class="col-xs-1 space 41 white">
 	<% @pieces.each do |piece| %>
 	    <% if piece.x_coord == 4 && piece.y_coord == 1 %> 
-	    	<%= piece.color %> <%=piece.piece_type %></i><br />
+	    	<%= image_tag(piece.image) %>
 	    <% end%>
 		<% end %>
 	 </td>
 	 <td class="col-xs-1 space 51 black info">
 	<% @pieces.each do |piece| %>
 	    <% if piece.x_coord == 5 && piece.y_coord == 1 %> 
-	    	<%= piece.color %> <%=piece.piece_type %></i><br />
+	    	<%= image_tag(piece.image) %>
 	    <% end%>
 		<% end %>
 	 </td>
 	 <td class="col-xs-1 space 61 white">
 	<% @pieces.each do |piece| %>
 	    <% if piece.x_coord == 6 && piece.y_coord == 1 %> 
-	    	<%= piece.color %> <%=piece.piece_type %></i><br />
+	    	<%= image_tag(piece.image) %>
 	    <% end%>
 		<% end %>
 	 </td>
 	 <td class="col-xs-1 space 71 black info">
 	<% @pieces.each do |piece| %>
 	    <% if piece.x_coord == 7 && piece.y_coord == 1 %> 
-	    	<%= piece.color %> <%=piece.piece_type %></i><br />
+	    	<%= image_tag(piece.image) %>
 	    <% end%>
 		<% end %>
 	 </td>
@@ -399,56 +400,56 @@
 	 <td class="col-xs-1 space 00 black info">
 	<% @pieces.each do |piece| %>
 	    <% if piece.x_coord == 0 && piece.y_coord == 0 %> 
-	    	<%= piece.color %> <%=piece.piece_type %></i><br />
+	    	<%= image_tag(piece.image) %>
 	    <% end%>
 		<% end %>
 	 </td>
 	 <td class="col-xs-1 space 10 white">
 	<% @pieces.each do |piece| %>
 	    <% if piece.x_coord == 1 && piece.y_coord == 0 %> 
-	    	<%= piece.color %> <%=piece.piece_type %></i><br />
+	    	<%= image_tag(piece.image) %>
 	    <% end%>
 		<% end %>
 	 </td>
 	 <td class="col-xs-1 space 20 black info">
 	<% @pieces.each do |piece| %>
 	    <% if piece.x_coord == 2 && piece.y_coord == 0 %> 
-	    	<%= piece.color %> <%=piece.piece_type %></i><br />
+	    	<%= image_tag(piece.image) %>
 	    <% end%>
 		<% end %>
 	 </td>
 	 <td class="col-xs-1 space 30 white">
 	<% @pieces.each do |piece| %>
 	    <% if piece.x_coord == 3 && piece.y_coord == 0 %> 
-	    	<%= piece.color %> <%=piece.piece_type %></i><br />
+	    	<%= image_tag(piece.image) %>
 	    <% end%>
 		<% end %>
 	 </td>
 	 <td class="col-xs-1 space 40 black info">
 	<% @pieces.each do |piece| %>
 	    <% if piece.x_coord == 4 && piece.y_coord == 0 %> 
-	    	<%= piece.color %> <%=piece.piece_type %></i><br />
+	    	<%= image_tag(piece.image) %>
 	    <% end%>
 		<% end %>
 	 </td>
 	 <td class="col-xs-1 space 50 white">
 	<% @pieces.each do |piece| %>
 	    <% if piece.x_coord == 5 && piece.y_coord == 0 %> 
-	    	<%= piece.color %> <%=piece.piece_type %></i><br />
+	    	<%= image_tag(piece.image) %>
 	    <% end%>
 		<% end %>
 	 </td>
 	 <td class="col-xs-1 space 60 black info">
 	<% @pieces.each do |piece| %>
 	    <% if piece.x_coord == 6 && piece.y_coord == 0 %> 
-	    	<%= piece.color %> <%=piece.piece_type %></i><br />
+	    	<%= image_tag(piece.image) %>
 	    <% end%>
 		<% end %>
 	 </td>
 	 <td class="col-xs-1 space 70 white">
 	<% @pieces.each do |piece| %>
 	    <% if piece.x_coord == 7 && piece.y_coord == 0 %> 
-	    	<%= piece.color %> <%=piece.piece_type %></i><br />
+	    	<%= image_tag(piece.image) %>
 	    <% end%>
 		<% end %>
 	 </td>
