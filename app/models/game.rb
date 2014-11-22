@@ -225,6 +225,7 @@ class Game < ActiveRecord::Base
 			:x_coord => 7,
 			:y_coord => 7,
 			:piece_type => 'rook',
+			:image => 'black-rook.gif'
 			)
 	end
 end
