@@ -1,5 +1,7 @@
 Chesster::Application.routes.draw do
 
+  get "game/show"
+  resources :games
   devise_for :users
   devise_for :views
   # The priority is based upon order of creation: first created -> highest priority.
