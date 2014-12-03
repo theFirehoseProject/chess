@@ -6,6 +6,13 @@
  padding: 30px 0px 0px 50px;
 }
 
+nav, .navbar, .navbar-default{
+	background: rgba(255, 255, 255, 1);
+	border: none;
+border-bottom: 1px dotted #828282;
+	
+}
+
 .board{
 }
 
@@ -20,7 +27,9 @@
 	color: white;
 
 }
-// this didn't work, so overrode the derault 'info' class definition
-// .chess td .black {
-//  background-color: #000000 !important;
-// }
+
+
+.logo{
+	padding-top: 6px;
+	width: 100px;
+}
