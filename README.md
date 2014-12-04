@@ -8,22 +8,22 @@ See [wireframes](https://raw.githubusercontent.com/theFirehoseProject/chess/mast
 
 These instructions were provided by Ilya in a [recent branch](https://github.com/theFirehoseProject/chess/pull/6).
 
-'''ruby
+```ruby
 rails c
 g = Game.create
-'''
+```
 
  This creates a new game. Go into your browser and check http://localhost:3030/games/1 - it should display an empty board.
 
-'''ruby
+```ruby
 run g.initialize_the_board!
-'''
+```
 
 Reload the page - it should display the pieces.
 
-'''ruby
+```ruby
 g.pieces.last.update(:x_coord => 4, :y_coord => 3)
-'''
+```
 
 Reload the page (you just moved a piece).
 
