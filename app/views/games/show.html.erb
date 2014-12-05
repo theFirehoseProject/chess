@@ -7,13 +7,8 @@
 	<% first_tile_white = true %>
 	<% 7.downto(0) do |row| %>
 		<tr class="row row<%= row %>">
-		<% 0.upto(7) do |column| %>
-			<% if first_tile_white
-					tile_color = column % 2 == 0 ? "white" : "black info"
-				else
-					tile_color = column % 2 == 0 ? "black info" : "white"
-				end %>
-			<td class="col-xs-1 space <%= column %><%= row %> <%= tile_color %>">
+		<% 0.upto(7) do |column| %>		
+			<td class="col-xs-1 space <%= column %><%= row %> <%= tile_color(first_tile_white, column) %>">
 				<% @pieces.each do |piece| %>
 				    <% if piece.x_coord == column && piece.y_coord == row %> 
 				    	<%= image_tag(piece.image, :class=>"img-responsive") %></i><br />
