@@ -8,8 +8,8 @@ class GamesController < ApplicationController
 
 
   def select
+    # @pieces = @game.pieces
     # @piece = Piece.find(params[:id])
-  
 
   end
 
