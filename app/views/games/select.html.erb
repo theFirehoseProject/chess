@@ -10,7 +10,7 @@
 				<% 0.upto(7) do |column| %>		
 					<td class="col-xs-1 space <%= column %><%= row %> <%= tile_color(first_tile_white, column) %>">
 
-						
+						<%= image_tag(@piece.image, :x_coord => @piece, :y_coord => @piece, :class => "img-responsive") %></i><br />
 		
 
 

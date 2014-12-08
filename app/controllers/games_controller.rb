@@ -11,7 +11,7 @@ class GamesController < ApplicationController
   def select
     # @game = Game.find(params[:id])
     # @pieces = @game.pieces
-    @piece = Piece.find(params[:id])
+    @piece = Piece.find(params[:piece_id])
 
   end
 
@@ -20,6 +20,11 @@ class GamesController < ApplicationController
   	# Nan's assignment
 
   end
+
+  private
+
+
+
 
 
 

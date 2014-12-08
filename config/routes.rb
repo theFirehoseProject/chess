@@ -2,7 +2,7 @@ Chesster::Application.routes.draw do
 
   resources :games
   devise_for :users
-  get 'games/:id/:x_coord/:y_coord', :to => 'games#select', :as => 'select'
+  get 'games/:id/:piece_id/:x_coord/:y_coord', :to => 'games#select', :as => 'select'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
