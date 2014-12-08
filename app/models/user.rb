@@ -4,6 +4,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  has_many :games, foreign_key: "user_id"
+  has_many :games, foreign_key: "player_2"
+
   def name
   	self.email	
   end

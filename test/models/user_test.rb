@@ -4,7 +4,7 @@ class UserTest < ActiveSupport::TestCase
 
   test "user model returns email address for name" do  	
   	user = FactoryGirl.build(:user)
-  	expected = "random@chesster.com"
+  	expected = user.email
   	assert_equal expected, user.name
   end
 
