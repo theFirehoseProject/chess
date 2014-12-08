@@ -1,14 +1,14 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  type: 
+  piece_type: 
   game_id: 1
   x_coord: 1
   y_coord: 1
   color: MyString
 
 two:
-  type: 
+  piece_type: 
   game_id: 1
   x_coord: 1
   y_coord: 1

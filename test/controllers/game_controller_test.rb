@@ -1,8 +1,10 @@
 require 'test_helper'
 
-class GameControllerTest < ActionController::TestCase
+class GamesControllerTest < ActionController::TestCase
+
   test "should get show" do
-    get :show
+  	game = FactoryGirl.create(:game)  	
+    get :show, :id => game.id
     assert_response :success
   end
 
