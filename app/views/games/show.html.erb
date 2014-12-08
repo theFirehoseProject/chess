@@ -1,4 +1,5 @@
 	<h1>Game#show</h1>
+	<h2>Click on the piece that you would like to move</h2>
 	<p>Find me in app/views/game/show.html.erb</p>
 
 	<div class="table-responsive">
@@ -11,7 +12,7 @@
 			<td class="col-xs-1 space <%= column %><%= row %> <%= tile_color(first_tile_white, column) %>">
 				<% @pieces.each do |piece| %>
 				    <% if piece.x_coord == column && piece.y_coord == row %> 
-				    	<%= image_tag(piece.image, :class=>"img-responsive") %></i><br />
+				    	<%= link_to image_tag(piece.image, :class=>"img-responsive"), select_path(piece) %></i><br />
 				    <% end%>
 				<% end %>
 			</td>
