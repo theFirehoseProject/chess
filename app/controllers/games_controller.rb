@@ -8,10 +8,8 @@ class GamesController < ApplicationController
 
 
   def select
-  	# add code to links identifying each individual piece
-    # when user clicks link, pass x,y into url
-    @piece = Piece.find(params[:id, :x_coord, :y_coord])
-    # redirect to select page that displays piece with that x, y
+    # @piece = Piece.find(params[:id])
+  
 
   end
 
