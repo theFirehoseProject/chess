@@ -12,7 +12,7 @@
 			<td class="col-xs-1 space <%= column %><%= row %> <%= tile_color(first_tile_white, column) %>">
 				<% @pieces.each do |piece| %>
 				    <% if piece.x_coord == column && piece.y_coord == row %> 
-				    	<%= link_to image_tag(piece.image, :class=>"img-responsive"), select_path( :piece_id => piece, :x_coord => piece.x_coord, :y_coord => piece.y_coord ) %></i><br />
+				    	<%= link_to image_tag(piece.image, :class=>"img-responsive"), select_path( :piece_id => piece, :x_coord => piece.x_coord, :y_coord => piece.y_coord ) %>
 				    <% end%>
 				<% end %>
 			</td>

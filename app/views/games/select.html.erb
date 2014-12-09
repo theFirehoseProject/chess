@@ -9,18 +9,22 @@
 			<tr class="row row<%= row %>">
 				<% 0.upto(7) do |column| %>		
 					<td class="col-xs-1 space <%= column %><%= row %> <%= tile_color(first_tile_white, column) %>">
+						
 
-						<%= image_tag(@piece.image, :x_coord => @piece, :y_coord => @piece, :class => "img-responsive") %></i><br />
-		
-
-
+						<% if @x_coord == column && @y_coord == row %>
+							<%= image_tag(@piece.image, :piece_id => @piece, :x_coord => @piece, :y_coord => @piece, :class => "img-responsive") %>
+							
+						<% else %>
+							<%= link_to 'Move piece here', '#' %>
+							
+						<% end %>
 
 					</td>
-
 				<% end %>
 			</tr>
 			<% first_tile_white = first_tile_white.! %>
 		<% end %>
+
 	</table>
 </div>
 
