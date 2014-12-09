@@ -26,7 +26,7 @@ class GamesControllerTest < ActionController::TestCase
 
   test "should get create" do
     o = FactoryGirl.create(:opponent)    
-    post :create, game: {:player_2 => o.id}
+    post :create, game: {:opponent_id => o.id}
     new_game = Game.last
     assert_redirected_to game_path(new_game.id)
   end

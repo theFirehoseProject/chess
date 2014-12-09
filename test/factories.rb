@@ -10,7 +10,7 @@ FactoryGirl.define do
   
   factory :game do
   	association :user, factory: :player
-  	association :player_2, factory: :opponent
+  	association :opponent, factory: :opponent
   	title "Hello"
   end
 

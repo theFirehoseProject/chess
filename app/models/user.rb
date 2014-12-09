@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :games
+  
+  # look at below line
   has_many :games, foreign_key: "player_2"
 
   def name
