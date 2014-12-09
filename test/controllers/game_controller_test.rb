@@ -2,16 +2,34 @@ require 'test_helper'
 
 class GamesControllerTest < ActionController::TestCase
 
-  test "should get show" do
-  	u = FactoryGirl.create(:player)
-    sign_in u
+  # called before any test is run
+  def setup
+    @u = FactoryGirl.create(:player)
+    sign_in @u
+  end
 
-  	game = FactoryGirl.create(:game)  	  	
-  	puts game.inspect
-  	puts u.inspect
-  	
+  # called after any test is run
+  def teardown
+    sign_out @u
+  end
+
+  test "should get show" do
+  	game = FactoryGirl.create(:game)
     get :show, :id => game.id
     assert_response :success
   end
+
+  test "should get new" do
+    get :new
+    assert_response :success
+  end
+
+  test "should get create" do
+    o = FactoryGirl.create(:opponent)    
+    post :create, game: {:player_2_id => o.id}
+    new_game_id = Game.last.id
+    assert_redirected_to game_path(new_game_id)
+  end
+
 
 end

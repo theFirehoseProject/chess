@@ -1,7 +1,7 @@
 class Game < ActiveRecord::Base
 	has_many :pieces
 	belongs_to :user
-        belongs_to :player_2, :foreign_key => 'player_2', :class_name => User
+    belongs_to :player_2, :foreign_key => 'player_2', :class_name => User
 
 	def initialize_the_board!
 		self.pieces.create(
