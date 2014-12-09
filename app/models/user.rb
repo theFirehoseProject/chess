@@ -7,7 +7,16 @@ class User < ActiveRecord::Base
   has_many :games
   
   # look at below line
-  has_many :games, foreign_key: "player_2"
+  has_many :challenged_games, foreign_key: "opponent_id", :class_name => Game
+
+  #scope :all_games, -> { where("user_id = ? OR opponent_id = ?", self.id, self.id) }
+  #scope :red, lambda {where("user_id = ? OR opponent_id = ?", self.id, self.id)}
+
+
+
+  def all_games
+  	Game.where("user_id = ? OR opponent_id = ?", self.id, self.id)
+  end
 
   def name
   	self.email	

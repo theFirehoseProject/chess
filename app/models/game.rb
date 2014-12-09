@@ -2,6 +2,7 @@ class Game < ActiveRecord::Base
 	has_many :pieces
 	belongs_to :user
     belongs_to :opponent, :foreign_key => 'opponent_id', :class_name => User
+	scope :for_user, lambda {|user_id| where("user_id = ? OR opponent_id = ?", user_id, user_id)}
 
 	def initialize_the_board!
 		self.pieces.create(
