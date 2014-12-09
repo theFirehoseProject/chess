@@ -11,12 +11,15 @@
 					<td class="col-xs-1 space <%= column %><%= row %> <%= tile_color(first_tile_white, column) %>">
 						
 
-						<% if @x_coord == column && @y_coord == row %>
-							<%= image_tag(@piece.image, :piece_id => @piece, :x_coord => @piece, :y_coord => @piece, :class => "img-responsive") %>
+						<% if @x_coord.to_i == column && @y_coord.to_i == row %>
+							<%= image_tag(@piece.image, :piece_id => @piece, :x_coord => @piece, :y_coord => @piece, :class => "img-responsive selected") %>
 							
 						<% else %>
-							<%= link_to 'Move piece here', '#' %>
-							
+							<% @pieces.each do |piece| %>
+				    			<% if piece.x_coord == column && piece.y_coord == row %> 
+				    				<%= image_tag(piece.image, :class=>"img-responsive") %>
+				    			<% end%>
+							<% end %>
 						<% end %>
 
 					</td>

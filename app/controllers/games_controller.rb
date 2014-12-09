@@ -11,6 +11,8 @@ class GamesController < ApplicationController
     @piece_id = params[:piece_id]
     @x_coord = params[:x_coord]
     @y_coord = params[:y_coord]
+    @game = Game.find(params[:id])
+    @pieces = @game.pieces
   end
 
 
