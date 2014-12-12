@@ -1,34 +1,34 @@
 <h1>Move your piece</h1>
 <p>Click on the space that you want to move your piece to</p>
-
 <div class="table-responsive">
 	<table class="board table chess">
-
 		<% first_tile_white = true %>
-		<% 7.downto(0) do |row| %>
-			<tr class="row row<%= row %>">
-				<% 0.upto(7) do |column| %>		
-					<td class="col-xs-1 space <%= column %><%= row %> <%= tile_color(first_tile_white, column) %>">
-						
-
+			<% 7.downto(0) do |row| %>
+				<tr class="row row<%= row %>">
+					<% 0.upto(7) do |column| %>	
+						<td class="col-xs-1 space <%= column %><%= row %> <%= tile_color(first_tile_white, column) %>">
 						<% if @x_coord.to_i == column && @y_coord.to_i == row %>
 							<%= image_tag(@piece.image, :piece_id => @piece, :x_coord => @piece, :y_coord => @piece, :class => "img-responsive selected") %>
-							
 						<% else %>
 							<% @pieces.each do |piece| %>
-				    			<% if piece.x_coord == column && piece.y_coord == row %> 
-				    				<%= image_tag(piece.image, :class=>"img-responsive") %>
-				    			<% end%>
-							<% end %>
-						<% end %>
+							<% if piece.x_coord == column && piece.y_coord == row %>
+							
+								<%= image_tag(piece.image, :class=>"img-responsive") %>
+						
+							<!-- not the piece, but the square -->
+							<% else %>
 
+							<% link_to move_path(:x_coord => column, :y_coord => row )%>
+								<% end%>
+						<% end %>
+					<% end %>
 					</td>
 				<% end %>
-			</tr>
-			<% first_tile_white = first_tile_white.! %>
+				</tr>
+		<% first_tile_white = first_tile_white.! %>
 		<% end %>
-
 	</table>
 </div>
+
 
 
