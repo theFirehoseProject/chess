@@ -36,15 +36,6 @@ class GamesController < ApplicationController
     @piece_id = params[:piece_id]
     @x_coord = params[:x_coord]
     @y_coord = params[:y_coord]
-    # @piece = @game.pieces.first
-    # @piece_id = params[:id]
-    # @x_coord = @piece.x_coord
-    # @y_coord = @piece.y_coord
-    # @piece.x_coord = 5
-    # @piece.y_coord = 5
-    # want to get these from update on them 
-    # triggered by code on select
-    # then update and save
     @piece.update_attributes({:x_coord => @x_coord, :y_coord => @y_coord})
     redirect_to game_path(@game)
   end
