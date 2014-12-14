@@ -30,7 +30,14 @@ class GamesController < ApplicationController
   end
 
   def move
-  	# Nan's assignment
+    @game = Game.find(params[:id])
+    @pieces = @game.pieces
+    @piece = Piece.find(params[:piece_id])
+    @piece_id = params[:piece_id]
+    @x_coord = params[:x_coord]
+    @y_coord = params[:y_coord]
+    @piece.update_attributes({:x_coord => @x_coord, :y_coord => @y_coord})
+    redirect_to game_path(@game)
   end
 
 

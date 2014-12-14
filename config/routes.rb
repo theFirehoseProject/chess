@@ -3,7 +3,7 @@ Chesster::Application.routes.draw do
   resources :games
   devise_for :users
   get 'games/:id/:piece_id/:x_coord/:y_coord', :to => 'games#select', :as => 'select'
-
+  post 'games/:id/:piece_id/:x_coord/:y_coord', :to => 'games#move', :as => 'move'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -12,7 +12,7 @@ Chesster::Application.routes.draw do
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
-  get 'board' => 'static_pages#board'
+
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
