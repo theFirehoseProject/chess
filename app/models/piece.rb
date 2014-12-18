@@ -3,12 +3,22 @@ class Piece < ActiveRecord::Base
 
 
 	def is_move_allowed?(new_x, new_y)
-		# need to check the following:
-		#   - is move permitted for that piece according to piece rules?
-		# 	- is the move obstructed by another piece?
+		# check whether suggested move obeys game logic
+		move_logic_is_valid = false
 		piece = Piece.find(self.id)
 		if piece.piece_type == 'pawn'
-			return legit_moves_for_pawn.include? [new_x, new_y]
+			if legit_moves_for_pawn.include? [new_x, new_y]
+				move_logic_is_valid = true
+			end
+		end
+
+		# if the destination location obeys the game rules, then check for obstructions
+		if move_logic_is_valid
+			# if is_move_obstructed returns true, then return 'false' for main function,
+			# and vice versa
+			return self.game.is_move_obstructed?(self.id, new_x, new_y).!
+		else 
+			return nil
 		end
 	end
 
