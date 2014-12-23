@@ -230,4 +230,65 @@ class Game < ActiveRecord::Base
 			:image => 'black-rook.gif'
 			)
 	end
+
+	def is_move_obstructed?(piece_id, new_x, new_y)
+		# does the following operations:
+		# - get all tile coordinates between current piece tile and destination tile (list A)
+		# - gets coordinates of all pieces in game (list B)
+		# - checks whether there is any overlap between list A and list B
+		#      - if so, it returns 'true' (there is an obstruction)
+		#  	   - if not, it returns 'false' (there is no obstruction)
+		# - if destination tile is not on a horizontal / vertical / perfect diagonal relative
+		#   to current piece tile, then 'nil' is returned (move isn't valid)
+		current_piece = Piece.find(piece_id)
+
+		# check that the destionation is a horizontal/vertical/diagonal
+		# line away from current piece
+		x_diff = current_piece.x_coord - new_x
+		y_diff = current_piece.y_coord - new_y
+		unless (x_diff == y_diff) || (x_diff == 0) || (y_diff == 0)
+			return nil
+		end
+
+		# get list of coordinates of tiles between destionation tile
+		# and current piece tile
+		places_between = [ [new_x, new_y] ]
+		back_to_start = false
+		current_coordinates = [current_piece.x_coord, current_piece.y_coord]
+		until back_to_start
+			if new_x > current_piece.x_coord
+				new_x = new_x - 1
+			elsif new_x < current_piece.x_coord
+				new_x = new_x + 1
+			end
+
+			if new_y > current_piece.y_coord
+				new_y = new_y -  1
+			elsif new_y < current_piece.y_coord
+				new_y = new_y + 1
+			end
+
+			if current_coordinates == [new_x, new_y]
+				back_to_start = true
+			else
+				places_between << [new_x, new_y]
+			end
+		end
+
+		# get coordinates for all game pieces
+		pieces = self.pieces.to_a
+		all_piece_coordinates = pieces.map { |p| [p.x_coord, p.y_coord] }
+
+		# check if any current game pieces overlap with 
+		# the coordinates between target and current piece position
+		obstruction = false
+		all_piece_coordinates.each do |piece_coordinates|			
+			if places_between.include? piece_coordinates
+				obstruction = true
+				break
+			end		
+		end
+		return obstruction
+	end
+
 end
