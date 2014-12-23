@@ -35,12 +35,17 @@ class GamesController < ApplicationController
     @piece = Piece.find(params[:piece_id])
     @piece_id = params[:piece_id]
     @x_coord = params[:x_coord]
-    @y_coord = params[:y_coord]
+    @y_coord = params[:y_coord]  
+    @captured = @game.pieces.where(:x_coord => @x_coord, :y_coord => @y_coord).first
+    if @captured.present? 
+       @captured.update_attributes({:x_coord => nil, :y_coord => nil})
+    end
     @piece.update_attributes({:x_coord => @x_coord, :y_coord => @y_coord})
     redirect_to game_path(@game)
+
   end
 
-
+ 
 
   private
 
