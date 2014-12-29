@@ -1,9 +1,0 @@
-	function(el){
-var path = $(el.target).data("move-url");
-+	if(path==undefined){
-+	el = $(el.target).parent();
-+	path = $(el).data("move-url");
-+	}
-var $form = $('#move');
-$form.attr('action', path);
-$form.submit();
