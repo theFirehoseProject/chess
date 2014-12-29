@@ -32,13 +32,10 @@ when using plain html form tag for this -->
 	$(function(){
 			$('td').click(
 				function(el){
-					var path = $(el.target).data("move-url");
-					if(path==undefined){
-						el = $(el.target).parent();
-						path = $(el).data("move-url");
-					}
+					var path = $(el.target).closest('td').data("move-url");
 					var $form =  $('#move');
 					$form.attr('action', path); 
+					console.log(path);
 					$form.submit();
 				});
 	});
