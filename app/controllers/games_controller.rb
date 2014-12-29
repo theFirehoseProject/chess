@@ -35,12 +35,19 @@ class GamesController < ApplicationController
     @piece = Piece.find(params[:piece_id])
     @piece_id = params[:piece_id]
     @x_coord = params[:x_coord]
-    @y_coord = params[:y_coord]
-    @piece.update_attributes({:x_coord => @x_coord, :y_coord => @y_coord})
+    @y_coord = params[:y_coord]  
+    @captured = @game.pieces.where(:x_coord => @x_coord, :y_coord => @y_coord).first
+    if @captured.present?  && @piece.color != @captured.color
+       @captured.update_attributes({:x_coord => nil, :y_coord => nil}) && @piece.update_attributes({:x_coord => @x_coord, :y_coord => @y_coord})
+    elsif @captured.present? && @piece.color == @captured.color
+      flash[:notice] = "You can't move your piece to another space occupied by another of your pieces."
+    else
+      @piece.update_attributes({:x_coord => @x_coord, :y_coord => @y_coord})
+    end
     redirect_to game_path(@game)
   end
 
-
+ 
 
   private
 
