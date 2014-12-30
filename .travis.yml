@@ -13,3 +13,4 @@ deploy:
   app: chesster
   on:
     repo: theFirehoseProject/chess
+
