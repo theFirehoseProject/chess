@@ -8,7 +8,7 @@
 					<% 0.upto(7) do |column| %>	
 						<td data-move-url="<%= move_path(@game,:piece_id => @piece.id, :x_coord => column,:y_coord => row) %>" class="col-xs-1 space <%= column %><%= row %> <%= tile_color(first_tile_white, column) %>">
 						<% if @x_coord.to_i == column && @y_coord.to_i == row %>
-							<%= image_tag(@piece.image, :piece_id => @piece, :x_coord => @piece, :y_coord => @piece, :class => "img-responsive selected") %>
+							<%= image_tag(@piece.image, :class => "img-responsive selected") %>
 						<% else %>
 							<% @pieces.each do |piece| %>
 							<% if piece.x_coord == column && piece.y_coord == row %>
