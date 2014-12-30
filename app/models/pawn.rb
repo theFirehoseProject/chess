@@ -51,12 +51,12 @@ class Pawn < Piece
 		end
 	end	
 
-	def get_white_image
-		return "white-pawn.gif"
-	end
-
-	def get_black_image
-		return "black-pawn.gif"
+	def self.get_image(color)
+		if color == "white"
+			return "white-pawn.gif"
+		elsif color == "black"
+			return "black-pawn.gif"
+		end
 	end
 
 end

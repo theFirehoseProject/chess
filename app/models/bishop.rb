@@ -13,12 +13,11 @@ class Bishop < Piece
 		# return an array of squares that the piece can move to
 	end
 
-	def get_white_image
-		return "white-bishop.gif"
+	def self.get_image(color)
+		if color == "white"
+			return "white-bishop.gif"
+		elsif color == "black"
+			return "black-bishop.gif"
+		end
 	end
-
-	def get_black_image
-		return "black-bishop.gif"
-	end
-
 end

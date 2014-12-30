@@ -12,55 +12,55 @@ class Game < ActiveRecord::Base
 	scope :for_user, lambda {|user_id| where("user_id = ? OR opponent_id = ?", user_id, user_id)}
 
 	INITIAL_BOARD_PIECES = [
-		['white', [0, 0], 'rook', 'white-rook.gif'],
-		['white', [1, 0], 'knight', 'white-knight.gif'],
-		['white', [2, 0], 'bishop', 'white-bishop.gif'],
-		['white', [3, 0], 'queen', 'white-queen.gif'],
-		['white', [4, 0], 'king', 'white-king.gif'],
-		['white', [5, 0], 'bishop', 'white-bishop.gif'],
-		['white', [6, 0], 'knight', 'white-knight.gif'],
-		['white', [7, 0], 'rook', 'white-rook.gif'],
-		['white', [0, 1], 'pawn', 'white-pawn.gif'],
-		['white', [1, 1], 'pawn', 'white-pawn.gif'],
-		['white', [2, 1], 'pawn', 'white-pawn.gif'],
-		['white', [3, 1], 'pawn', 'white-pawn.gif'],
-		['white', [4, 1], 'pawn', 'white-pawn.gif'],
-		['white', [5, 1], 'pawn', 'white-pawn.gif'],
-		['white', [6, 1], 'pawn', 'white-pawn.gif'],
-		['white', [7, 1], 'pawn', 'white-pawn.gif'],
-		['black', [0, 7], 'rook', 'black-rook.gif'],
-		['black', [1, 7], 'knight', 'black-knight.gif'],
-		['black', [2, 7], 'bishop', 'black-bishop.gif'],
-		['black', [3, 7], 'queen', 'black-queen.gif'],
-		['black', [4, 7], 'king', 'black-king.gif'],
-		['black', [5, 7], 'bishop', 'black-bishop.gif'],
-		['black', [6, 7], 'knight', 'black-knight.gif'],
-		['black', [7, 7], 'rook', 'black-rook.gif'],
-		['black', [0, 6], 'pawn', 'black-pawn.gif'],
-		['black', [1, 6], 'pawn', 'black-pawn.gif'],
-		['black', [2, 6], 'pawn', 'black-pawn.gif'],
-		['black', [3, 6], 'pawn', 'black-pawn.gif'],
-		['black', [4, 6], 'pawn', 'black-pawn.gif'],
-		['black', [5, 6], 'pawn', 'black-pawn.gif'],
-		['black', [6, 6], 'pawn', 'black-pawn.gif'],
-		['black', [7, 6], 'pawn', 'black-pawn.gif']
+		['white', [0, 0], 'rook'],
+		['white', [1, 0], 'knight'],
+		['white', [2, 0], 'bishop'],
+		['white', [3, 0], 'queen'],
+		['white', [4, 0], 'king'],
+		['white', [5, 0], 'bishop'],
+		['white', [6, 0], 'knight'],
+		['white', [7, 0], 'rook'],
+		['white', [0, 1], 'pawn'],
+		['white', [1, 1], 'pawn'],
+		['white', [2, 1], 'pawn'],
+		['white', [3, 1], 'pawn'],
+		['white', [4, 1], 'pawn'],
+		['white', [5, 1], 'pawn'],
+		['white', [6, 1], 'pawn'],
+		['white', [7, 1], 'pawn'],
+		['black', [0, 7], 'rook'],
+		['black', [1, 7], 'knight'],
+		['black', [2, 7], 'bishop'],
+		['black', [3, 7], 'queen'],
+		['black', [4, 7], 'king'],
+		['black', [5, 7], 'bishop'],
+		['black', [6, 7], 'knight'],
+		['black', [7, 7], 'rook'],
+		['black', [0, 6], 'pawn'],
+		['black', [1, 6], 'pawn'],
+		['black', [2, 6], 'pawn'],
+		['black', [3, 6], 'pawn'],
+		['black', [4, 6], 'pawn'],
+		['black', [5, 6], 'pawn'],
+		['black', [6, 6], 'pawn'],
+		['black', [7, 6], 'pawn']
 	]
 
 	def initialize_the_board!
 		INITIAL_BOARD_PIECES.each do |piece|
 			current_piece = piece[2]
 			if current_piece == "pawn"
-				self.pawns.create(:color => piece[0], :x_coord => piece[1][0], :y_coord => piece[1][1], :image => piece[3])
+				self.pawns.create(:color => piece[0], :x_coord => piece[1][0], :y_coord => piece[1][1], :image => Pawn.get_image(piece[0]))
 			elsif current_piece == "rook"
-				self.rooks.create(:color => piece[0], :x_coord => piece[1][0], :y_coord => piece[1][1], :image => piece[3])
+				self.rooks.create(:color => piece[0], :x_coord => piece[1][0], :y_coord => piece[1][1], :image => Rook.get_image(piece[0]))
 			elsif current_piece == "knight"
-				self.knights.create(:color => piece[0], :x_coord => piece[1][0], :y_coord => piece[1][1], :image => piece[3])
+				self.knights.create(:color => piece[0], :x_coord => piece[1][0], :y_coord => piece[1][1], :image => Knight.get_image(piece[0]))
 			elsif current_piece == "bishop"
-				self.bishops.create(:color => piece[0], :x_coord => piece[1][0], :y_coord => piece[1][1], :image => piece[3])
+				self.bishops.create(:color => piece[0], :x_coord => piece[1][0], :y_coord => piece[1][1], :image => Bishop.get_image(piece[0]))
 			elsif current_piece == "queen"
-				self.queens.create(:color => piece[0], :x_coord => piece[1][0], :y_coord => piece[1][1], :image => piece[3])
+				self.queens.create(:color => piece[0], :x_coord => piece[1][0], :y_coord => piece[1][1], :image => Queen.get_image(piece[0]))
 			elsif current_piece == "king"
-				self.kings.create(:color => piece[0], :x_coord => piece[1][0], :y_coord => piece[1][1], :image => piece[3])	
+				self.kings.create(:color => piece[0], :x_coord => piece[1][0], :y_coord => piece[1][1], :image => King.get_image(piece[0]))	
 			end
 		end
 	end

@@ -13,12 +13,12 @@ class Knight < Piece
 		# return an array of squares that the piece can move to
 	end
 
-	def get_white_image
-		return "white-knight.gif"
-	end
-
-	def get_black_image
-		return "black-knight.gif"
+	def self.get_image(color)
+		if color == "white"
+			return "white-knight.gif"
+		elsif color == "black"
+			return "black-knight.gif"
+		end
 	end
 
 end
