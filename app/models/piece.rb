@@ -12,22 +12,22 @@ class Piece < ActiveRecord::Base
 		# (2) is there an obstruction in the way? the game model
 		#  	  has a function that checks this:
 		#  		   is_move_obstructed?(piece_id, new_x, new_y)		
-		raise NotImplementedError .new
+		raise NotImplementedError .new("You must implement 'is_move_allowed?' method.")
 	end
 
 	def legit_moves
 		# return an array of squares that the piece can move to
-		raise NotImplementedError .new
+		raise NotImplementedError .new("You must implement 'legit_moves' method.")
 	end
 
 	def get_white_image
 		# return the image file for the white piece
-		raise NotImplementedError .new
+		raise NotImplementedError .new("You must implement 'get_white_image' method.")
 	end
 
 	def get_black_image
 		# return the image file for the black piece
-		raise NotImplementedError .new
+		raise NotImplementedError .new("You must implement 'get_black_image' method.")
 	end
 
 	# end of template methods
