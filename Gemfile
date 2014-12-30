@@ -55,9 +55,3 @@ end
 # gem 'debugger', group: [:development, :test]
 
 gem "factory_girl_rails", "~> 4.0"
-
-gem "travis-yaml"
-# per instruction on travis ruby page
-group :test do
-  gem 'rake'
-end
