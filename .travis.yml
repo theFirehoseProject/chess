@@ -1,7 +1,6 @@
 language: ruby
 rvm:
   - "2.0.0"
-  - 2.0.0 is the v on my local project
 before_install: 
 	- gem update --system
 	- gem --version
