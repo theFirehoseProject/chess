@@ -1,9 +1,10 @@
 language: ruby
 rvm:
-  - "1.9.3"
   - "2.0.0"
-  - jruby-19mode # JRuby in 1.9 mode
-  - jruby-20mode
-  - rbx
+before_install: 
+  - gem update --system
+  - gem --version
+before_script:
+  - bundle exec rake assets:precompile
 # uncomment only this line if your project needs to run something other than `rake`:
 # script: bundle exec rspec spec
