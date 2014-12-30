@@ -1,10 +1,15 @@
 language: ruby
 rvm:
-  - "2.0.0"
-before_install: 
-  - gem update --system
-  - gem --version
+- 2.0.0
+before_install:
+- gem update --system
+- gem --version
 before_script:
-  - bundle exec rake assets:precompile
-# uncomment only this line if your project needs to run something other than `rake`:
-# script: bundle exec rspec spec
+- bundle exec rake assets:precompile
+deploy:
+  provider: heroku
+  api_key:
+    secure: JAZlZUlFudvohrq/s0rrUYl49yOTPh7XTaq+Z4fePR/Uw/uMwxRoCf0gcJFXwcIkwjYkgQy4NqFQhFMFtrOUX8pkuM9Iwu1i4Ml+BmnuzWnl0XldOG7Yt5yCjQKgP01jy+JKA87LoL8OdN0cNOA61jiQVScrHEh5Al2qB5CYzEA=
+  app: chesster
+  on:
+    repo: theFirehoseProject/chess
