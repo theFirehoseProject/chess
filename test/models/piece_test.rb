@@ -2,7 +2,10 @@ require 'test_helper'
 
 class PieceTest < ActiveSupport::TestCase
 
-
+	test "check travis" do
+		actual = true
+		assert actual, "travis should pass"
+	end
 
 	test "check pawn moves are legit" do 		
 		piece = FactoryGirl.create(:piece, :x_coord => 3, :y_coord => 4, :color => "white", :piece_type => "pawn")
