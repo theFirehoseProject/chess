@@ -14,8 +14,7 @@ FactoryGirl.define do
   	title "Hello"
   end
 
-  factory :piece do 
-    piece_type  "pawn"    
+  factory :pawn do     
     x_coord     "3"
     y_coord     "4"
     color       "white"

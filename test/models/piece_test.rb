@@ -3,7 +3,7 @@ require 'test_helper'
 class PieceTest < ActiveSupport::TestCase
 
 	test "check pawn moves are legit" do 		
-		piece = FactoryGirl.create(:piece, :x_coord => 3, :y_coord => 4, :color => "white", :piece_type => "pawn")
+		piece = FactoryGirl.create(:pawn, :x_coord => 3, :y_coord => 4, :color => "white")
 		actual = piece.is_move_allowed?(3, 5)
 		assert actual, "White pawns move up the board 1 or 2 places"
 
@@ -16,7 +16,7 @@ class PieceTest < ActiveSupport::TestCase
 		actual = piece.is_move_allowed?(4, 5)
 		assert_not actual, "White pawns don't move sideways"
 
-		piece = FactoryGirl.create(:piece, :x_coord => 3, :y_coord => 4, :color => "black", :piece_type => "pawn")
+		piece = FactoryGirl.create(:pawn, :x_coord => 3, :y_coord => 4, :color => "black")
 		actual = piece.is_move_allowed?(3, 3)
 		assert actual, "Black pawns move down the board 1 or 2 places"
 
