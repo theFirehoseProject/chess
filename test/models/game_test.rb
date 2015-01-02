@@ -2,6 +2,10 @@ require 'test_helper'
 
 class GameTest < ActiveSupport::TestCase
 
+
+
+
+
 	test "check obstruction logic"  do
 		game = FactoryGirl.create(:game)
 		piece_to_move = FactoryGirl.create(:piece, :game_id => game.id, :x_coord => 3, :y_coord => 4, :color => "white", :piece_type => "pawn")
