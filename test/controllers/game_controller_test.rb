@@ -39,8 +39,8 @@ class GamesControllerTest < ActionController::TestCase
     #actual = piece_to_move.move_piece!(3, 5)
     assert_redirected_to game_path(game)
     piece_to_move.reload
-    assert_equal 3, piece_to_move.x_coord, "Moved piece x_coord is changed to 3"
-    assert_equal 5, piece_to_move.y_coord, "Moved piece y_coord is changed to 5"
+    assert_equal 3, piece_to_move.x_coord
+    assert_equal 5, piece_to_move.y_coord
   end
 
   test "move piece fails" do
@@ -50,11 +50,11 @@ class GamesControllerTest < ActionController::TestCase
 
     post :move, :id => game.id, :piece_id => piece_to_move.id, :x_coord => 3, :y_coord => 5
     piece_to_capture.reload
-    assert_not_nil piece_to_capture.x_coord, "Captured piece x_coord is changed to nil"
-    assert_not_nil piece_to_capture.y_coord, "Captured piece y_coord is changed to nil"
+    assert_not_nil piece_to_capture.x_coord
+    assert_not_nil piece_to_capture.y_coord
     piece_to_move.reload
-    assert_equal 3, piece_to_move.x_coord, "Moved piece x_coord is changed to 3"
-    assert_equal 4, piece_to_move.y_coord, "Moved piece y_coord is changed to 5"
+    assert_equal 3, piece_to_move.x_coord
+    assert_equal 4, piece_to_move.y_coord
     assert_redirected_to game_path(game)
     assert flash[:notice].present?
   end
