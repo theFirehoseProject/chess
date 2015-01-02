@@ -1,234 +1,68 @@
 class Game < ActiveRecord::Base
 	has_many :pieces
+	has_many :pawns
+	has_many :rooks 
+	has_many :queens
+	has_many :kings
+	has_many :knights
+	has_many :bishops
+
 	belongs_to :user
     belongs_to :opponent, :foreign_key => 'opponent_id', :class_name => User
 	scope :for_user, lambda {|user_id| where("user_id = ? OR opponent_id = ?", user_id, user_id)}
 
+	INITIAL_BOARD_PIECES = [
+		['white', [0, 0], 'rook'],
+		['white', [1, 0], 'knight'],
+		['white', [2, 0], 'bishop'],
+		['white', [3, 0], 'queen'],
+		['white', [4, 0], 'king'],
+		['white', [5, 0], 'bishop'],
+		['white', [6, 0], 'knight'],
+		['white', [7, 0], 'rook'],
+		['white', [0, 1], 'pawn'],
+		['white', [1, 1], 'pawn'],
+		['white', [2, 1], 'pawn'],
+		['white', [3, 1], 'pawn'],
+		['white', [4, 1], 'pawn'],
+		['white', [5, 1], 'pawn'],
+		['white', [6, 1], 'pawn'],
+		['white', [7, 1], 'pawn'],
+		['black', [0, 7], 'rook'],
+		['black', [1, 7], 'knight'],
+		['black', [2, 7], 'bishop'],
+		['black', [3, 7], 'queen'],
+		['black', [4, 7], 'king'],
+		['black', [5, 7], 'bishop'],
+		['black', [6, 7], 'knight'],
+		['black', [7, 7], 'rook'],
+		['black', [0, 6], 'pawn'],
+		['black', [1, 6], 'pawn'],
+		['black', [2, 6], 'pawn'],
+		['black', [3, 6], 'pawn'],
+		['black', [4, 6], 'pawn'],
+		['black', [5, 6], 'pawn'],
+		['black', [6, 6], 'pawn'],
+		['black', [7, 6], 'pawn']
+	]
+
 	def initialize_the_board!
-		self.pieces.create(
-			:color => 'white',
-			:x_coord => 0,
-			:y_coord => 0,
-			:piece_type => 'rook',
-			:image => 'white-rook.gif'
-			)
-		self.pieces.create(
-			:color => 'white',
-			:x_coord => 1,
-			:y_coord => 0,
-			:piece_type => 'knight',
-			:image => 'white-knight.gif'
-			)
-		self.pieces.create(
-			:color => 'white',
-			:x_coord => 2,
-			:y_coord => 0,
-			:piece_type => 'bishop',
-			:image => 'white-bishop.gif'
-			)
-		self.pieces.create(
-			:color => 'white',
-			:x_coord => 3,
-			:y_coord => 0,
-			:piece_type => 'queen',
-			:image => 'white-queen.gif'
-			)
-		self.pieces.create(
-			:color => 'white',
-			:x_coord => 4,
-			:y_coord => 0,
-			:piece_type => 'king',
-			:image => 'white-king.gif'
-			)
-		self.pieces.create(
-			:color => 'white',
-			:x_coord => 5,
-			:y_coord => 0,
-			:piece_type => 'bishop',
-			:image => 'white-bishop.gif'
-			)
-		self.pieces.create(
-			:color => 'white',
-			:x_coord => 6,
-			:y_coord => 0,
-			:piece_type => 'knight',
-			:image => 'white-knight.gif'
-			)
-		self.pieces.create(
-			:color => 'white',
-			:x_coord => 7,
-			:y_coord => 0,
-			:piece_type => 'rook',
-			:image => 'white-rook.gif'
-			)
-		self.pieces.create(
-			:color => 'white',
-			:x_coord => 0,
-			:y_coord => 1,
-			:piece_type => 'pawn',
-			:image => 'white-pawn.gif'
-			)
-		self.pieces.create(
-			:color => 'white',
-			:x_coord => 1,
-			:y_coord => 1,
-			:piece_type => 'pawn',
-			:image => 'white-pawn.gif'
-			)
-		self.pieces.create(
-			:color => 'white',
-			:x_coord => 2,
-			:y_coord => 1,
-			:piece_type => 'pawn',
-			:image => 'white-pawn.gif'
-			)
-		self.pieces.create(
-			:color => 'white',
-			:x_coord => 3,
-			:y_coord => 1,
-			:piece_type => 'pawn',
-			:image => 'white-pawn.gif'
-			)
-		self.pieces.create(
-			:color => 'white',
-			:x_coord => 4,
-			:y_coord => 1,
-			:piece_type => 'pawn',
-			:image => 'white-pawn.gif'
-			)
-		self.pieces.create(
-			:color => 'white',
-			:x_coord => 5,
-			:y_coord => 1,
-			:piece_type => 'pawn',
-			:image => 'white-pawn.gif'
-			)
-		self.pieces.create(
-			:color => 'white',
-			:x_coord => 6,
-			:y_coord => 1,
-			:piece_type => 'pawn',
-			:image => 'white-pawn.gif'
-			)
-		self.pieces.create(
-			:color => 'white',
-			:x_coord => 7,
-			:y_coord => 1,
-			:piece_type => 'pawn',
-			:image => 'white-pawn.gif'
-			)
-		self.pieces.create(
-			:color => 'black',
-			:x_coord => 0,
-			:y_coord => 6,
-			:piece_type => 'pawn',
-			:image => 'black-pawn.gif'
-			)
-		self.pieces.create(
-			:color => 'black',
-			:x_coord => 1,
-			:y_coord => 6,
-			:piece_type => 'pawn',
-			:image => 'black-pawn.gif'
-			)
-		self.pieces.create(
-			:color => 'black',
-			:x_coord => 2,
-			:y_coord => 6,
-			:piece_type => 'pawn',
-			:image => 'black-pawn.gif'
-			)
-		self.pieces.create(
-			:color => 'black',
-			:x_coord => 3,
-			:y_coord => 6,
-			:piece_type => 'pawn',
-			:image => 'black-pawn.gif'
-			)
-		self.pieces.create(
-			:color => 'black',
-			:x_coord => 4,
-			:y_coord => 6,
-			:piece_type => 'pawn',
-			:image => 'black-pawn.gif'
-			)
-		self.pieces.create(
-			:color => 'black',
-			:x_coord => 5,
-			:y_coord => 6,
-			:piece_type => 'pawn',
-			:image => 'black-pawn.gif'
-			)
-		self.pieces.create(
-			:color => 'black',
-			:x_coord => 6,
-			:y_coord => 6,
-			:piece_type => 'pawn',
-			:image => 'black-pawn.gif'
-			)
-		self.pieces.create(
-			:color => 'black',
-			:x_coord => 7,
-			:y_coord => 6,
-			:piece_type => 'pawn',
-			:image => 'black-pawn.gif'
-			)
-		self.pieces.create(
-			:color => 'black',
-			:x_coord => 0,
-			:y_coord => 7,
-			:piece_type => 'rook',
-			:image => 'black-rook.gif'
-			)
-		self.pieces.create(
-			:color => 'black',
-			:x_coord => 1,
-			:y_coord => 7,
-			:piece_type => 'knight',
-			:image => 'black-knight.gif'
-			)
-		self.pieces.create(
-			:color => 'black',
-			:x_coord => 2,
-			:y_coord => 7,
-			:piece_type => 'bishop',
-			:image => 'black-bishop.gif'
-			)
-		self.pieces.create(
-			:color => 'black',
-			:x_coord => 3,
-			:y_coord => 7,
-			:piece_type => 'queen',
-			:image => 'black-queen.gif'
-			)
-		self.pieces.create(
-			:color => 'black',
-			:x_coord => 4,
-			:y_coord => 7,
-			:piece_type => 'king',
-			:image => 'black-king.gif'
-			)
-		self.pieces.create(
-			:color => 'black',
-			:x_coord => 5,
-			:y_coord => 7,
-			:piece_type => 'bishop',
-			:image => 'black-bishop.gif'
-			)
-		self.pieces.create(
-			:color => 'black',
-			:x_coord => 6,
-			:y_coord => 7,
-			:piece_type => 'knight',
-			:image => 'black-knight.gif'
-			)
-		self.pieces.create(
-			:color => 'black',
-			:x_coord => 7,
-			:y_coord => 7,
-			:piece_type => 'rook',
-			:image => 'black-rook.gif'
-			)
+		INITIAL_BOARD_PIECES.each do |piece|
+			current_piece = piece[2]
+			if current_piece == "pawn"
+				self.pawns.create(:color => piece[0], :x_coord => piece[1][0], :y_coord => piece[1][1], :image => Pawn.get_image(piece[0]))
+			elsif current_piece == "rook"
+				self.rooks.create(:color => piece[0], :x_coord => piece[1][0], :y_coord => piece[1][1], :image => Rook.get_image(piece[0]))
+			elsif current_piece == "knight"
+				self.knights.create(:color => piece[0], :x_coord => piece[1][0], :y_coord => piece[1][1], :image => Knight.get_image(piece[0]))
+			elsif current_piece == "bishop"
+				self.bishops.create(:color => piece[0], :x_coord => piece[1][0], :y_coord => piece[1][1], :image => Bishop.get_image(piece[0]))
+			elsif current_piece == "queen"
+				self.queens.create(:color => piece[0], :x_coord => piece[1][0], :y_coord => piece[1][1], :image => Queen.get_image(piece[0]))
+			elsif current_piece == "king"
+				self.kings.create(:color => piece[0], :x_coord => piece[1][0], :y_coord => piece[1][1], :image => King.get_image(piece[0]))	
+			end
+		end
 	end
 
 	def is_move_obstructed?(piece_id, new_x, new_y)
@@ -242,7 +76,7 @@ class Game < ActiveRecord::Base
 		#   to current piece tile, then 'nil' is returned (move isn't valid)
 		current_piece = Piece.find(piece_id)
 
-		# check that the destionation is a horizontal/vertical/diagonal
+		# check that the destination is a horizontal/vertical/diagonal
 		# line away from current piece
 		x_diff = current_piece.x_coord - new_x
 		y_diff = current_piece.y_coord - new_y
