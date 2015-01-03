@@ -33,10 +33,10 @@ class GamesControllerTest < ActionController::TestCase
 
   test "move piece" do
     game = FactoryGirl.create(:game)
-    piece_to_move = FactoryGirl.create(:piece, :game_id => game.id, :x_coord => 3, :y_coord => 4, :color => "white", :piece_type => "pawn")
+    piece_to_move = FactoryGirl.create(:pawn, :game_id => game.id, :x_coord => 3, :y_coord => 4, :color => "white")
 
     post :move, :id => game.id, :piece_id => piece_to_move.id, :x_coord => 3, :y_coord => 5
-    #actual = piece_to_move.move_piece!(3, 5)
+    
     assert_redirected_to game_path(game)
     piece_to_move.reload
     assert_equal 3, piece_to_move.x_coord
@@ -45,8 +45,8 @@ class GamesControllerTest < ActionController::TestCase
 
   test "move piece fails" do
     game = FactoryGirl.create(:game)
-    piece_to_move = FactoryGirl.create(:piece, :game_id => game.id, :x_coord => 3, :y_coord => 4, :color => "white", :piece_type => "pawn")
-    piece_to_capture = FactoryGirl.create(:piece, :game_id => game.id, :x_coord => 3, :y_coord => 5, :color => "white", :piece_type => "pawn")
+    piece_to_move = FactoryGirl.create(:pawn, :game_id => game.id, :x_coord => 3, :y_coord => 4, :color => "white")
+    piece_to_capture = FactoryGirl.create(:pawn, :game_id => game.id, :x_coord => 3, :y_coord => 5, :color => "white")
 
     post :move, :id => game.id, :piece_id => piece_to_move.id, :x_coord => 3, :y_coord => 5
     piece_to_capture.reload

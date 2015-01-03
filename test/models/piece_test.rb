@@ -4,7 +4,7 @@ class PieceTest < ActiveSupport::TestCase
 
 	test "move piece" do
 		game = FactoryGirl.create(:game)
-		piece_to_move = FactoryGirl.create(:piece, :game_id => game.id, :x_coord => 3, :y_coord => 4, :color => "white", :piece_type => "pawn")
+		piece_to_move = FactoryGirl.create(:pawn, :game_id => game.id, :x_coord => 3, :y_coord => 4, :color => "white")
 
 		actual = piece_to_move.move_piece!(3, 5)
 		assert actual
@@ -16,8 +16,8 @@ class PieceTest < ActiveSupport::TestCase
 
 	test "capture piece" do
 		game = FactoryGirl.create(:game)
-		piece_to_move = FactoryGirl.create(:piece, :game_id => game.id, :x_coord => 3, :y_coord => 4, :color => "white", :piece_type => "pawn")
-		piece_to_capture = FactoryGirl.create(:piece, :game_id => game.id, :x_coord => 3, :y_coord => 5, :color => "black", :piece_type => "pawn")
+		piece_to_move = FactoryGirl.create(:pawn, :game_id => game.id, :x_coord => 3, :y_coord => 4, :color => "white")
+		piece_to_capture = FactoryGirl.create(:pawn, :game_id => game.id, :x_coord => 3, :y_coord => 5, :color => "black")
 
 		actual = piece_to_move.move_piece!(3, 5)
 		assert actual
@@ -31,8 +31,8 @@ class PieceTest < ActiveSupport::TestCase
 
 	test "move piece fails" do
 		game = FactoryGirl.create(:game)
-		piece_to_move = FactoryGirl.create(:piece, :game_id => game.id, :x_coord => 3, :y_coord => 4, :color => "white", :piece_type => "pawn")
-		piece_to_capture = FactoryGirl.create(:piece, :game_id => game.id, :x_coord => 3, :y_coord => 5, :color => "white", :piece_type => "pawn")
+		piece_to_move = FactoryGirl.create(:pawn, :game_id => game.id, :x_coord => 3, :y_coord => 4, :color => "white")
+		piece_to_capture = FactoryGirl.create(:pawn, :game_id => game.id, :x_coord => 3, :y_coord => 5, :color => "white")
 
 		actual = piece_to_move.move_piece!(3, 5)
 		assert !actual
