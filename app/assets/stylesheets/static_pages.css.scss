@@ -10,7 +10,11 @@ nav, .navbar, .navbar-default{
 	background: rgba(255, 255, 255, 1);
 	border: none;
 border-bottom: 1px dotted #828282;
-	
+}
+
+h1 {
+	padding: 10px;
+	font-weight: 100;
 }
 
 .board{
@@ -21,13 +25,13 @@ border-bottom: 1px dotted #828282;
  height: 75px;
  width: 75px;
 }
+
 // to force Bootstrap to do the black cells
+
 .info{
 	background-color: #000000 !important;
 	color: white;
-
 }
-
 
 .logo{
 	padding-top: 6px;
