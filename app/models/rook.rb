@@ -16,52 +16,45 @@ class Rook < Piece
 		end
 	end
 
-	def legit_moves
+def legit_moves
 		# return an array of squares that the piece can move to
-		piece = Piece.find(self.id)
-		x_init = piece.x_coord
-		y_init = piece.y_coord
+		x_init = self.x_coord
+		y_init = self.y_coord
 		tiles = [1, 2, 3, 4, 5, 6, 7]
 		moves = []
-		# legit moves:
-		# rook can only move sideways or up and down
-		# Sideways to the right: add 1-7 to x_init until x_move == 7, y_init remains the same
+		
 		tiles.each do |x|
-			x_move = x_init + x
-			if x_move > 7
-				x_move = nil
-			end
-			moves.push([x_move, y_init])
-		end
-		# Sideways to the left: subtract 1-7 to x_init until x_move == 0, y_init remains the same
-		tiles.each do |x|
-			x_move = x_init - x
-			if x_move < 0
-				x_move = nil
-			end  
-			moves.push([x_move, y_init])
-		end
-		# Up move: x_init remains the same, add 1-7 to y_init until y_move == 7, 
-		tiles.each do |x|
-			y_move = y_init + x
-			if y_move > 7
-				y_move = nil
-			end
-			moves.push([x_init, y_move])
-		end
-		# Down move: x_init remains the same, subtract 1-7 from y_init until y_move == 0
-		tiles.each do |x|
-			y_move = y_init - x
-			if y_move < 0
-				y_move = nil
-			end
-			moves.push([x_init, y_move])
+			
+			(x_init + x > 7)? x_move1 = nil : x_move1 = x_init + x
+			(x_init - x < 0)? x_move2 = nil : x_move2 = x_init - x
+			(y_init + x > 7)? y_move1 = nil : y_move1 = y_init + x
+			(y_init - x < 0)? y_move2 = nil : y_move2 = y_init - x
+
+			# Sideways to the right
+			move1 = [x_move1, y_init]
+			# Sideways to the left
+			move2 = [x_move2, y_init]
+			# Up move
+			move3 = [x_init, y_move1]
+			# Down move
+			move4 = [x_init, y_move2]
+
+			moves.push(move1, move2, move3, move4)
+
 		end
 
 		moves.delete_if {|moves| moves.include?(nil)}
 
 		return moves
 
+end
+
+	def self.get_image(color)
+		if color == "white"
+			return "white-rook.gif"
+		elsif color == "black"
+			return "black-rook.gif"
+		end
 	end
 
 end
