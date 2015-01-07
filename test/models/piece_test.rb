@@ -75,4 +75,22 @@ class PieceTest < ActiveSupport::TestCase
 
 	end
 
+	test "check rook moves are legit" do
+		piece = FactoryGirl.create(:rook, :x_coord => 0, :y_coord => 0, :color => "white")
+
+		actual = piece.is_move_allowed?(0, 2)
+		assert actual
+
+		actual = piece.is_move_allowed?(2, 0)
+		assert actual
+
+		actual = piece.is_move_allowed?(2, 2)
+		assert_not actual
+
+		actual = piece.is_move_allowed?(0, 8)
+		assert_not actual
+
+		actual = piece.is_move_allowed?(8, 0)
+		assert_not actual
+	end
 end
