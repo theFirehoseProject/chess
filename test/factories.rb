@@ -21,4 +21,11 @@ FactoryGirl.define do
     game
   end
 
+  factory :queen do
+    x_coord     "2"
+    y_coord     "2"
+    color       "white"
+    game
+  end
+
 end

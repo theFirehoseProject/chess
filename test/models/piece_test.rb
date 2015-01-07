@@ -75,4 +75,13 @@ class PieceTest < ActiveSupport::TestCase
 
 	end
 
+	test "check queen moves are legit" do
+		piece.FactoryGirl.create(:queen, :x_coord => 2, :y_coord => 2, :color => "white")
+
+		actual = piece.is_move_allowed?(2, 3)
+		assert actual, 
+
+
+	end
+
 end
