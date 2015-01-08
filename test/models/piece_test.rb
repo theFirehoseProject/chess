@@ -76,10 +76,22 @@ class PieceTest < ActiveSupport::TestCase
 	end
 
 	test "check queen moves are legit" do
-		piece.FactoryGirl.create(:queen, :x_coord => 2, :y_coord => 2, :color => "white")
+		piece = FactoryGirl.create(:queen, :x_coord => 2, :y_coord => 2, :color => "white")
 
-		actual = piece.is_move_allowed?(2, 3)
-		assert actual, 
+		actual = piece.is_move_allowed?(4, 2)
+		assert actual, "Queen moves horizontally to the right"
+
+		actual = piece.is_move_allowed?(2, 4)
+		assert actual, "Queen moves up the board"
+
+		actual = piece.is_move_allowed?(3, 3)
+		assert actual, "Queen moves diagonally up and to the right"
+
+		actual = piece.is_move_allowed?(2, 8)
+		assert_not actual, "Queen can not move up off the board"
+
+		actual = piece.is_move_allowed?(-1, 2)
+		assert_not actual, "Queen can not move horizontally off the board to the left"
 
 
 	end
