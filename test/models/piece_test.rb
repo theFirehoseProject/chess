@@ -71,10 +71,6 @@ class PieceTest < ActiveSupport::TestCase
 		actual = piece.is_move_allowed?(4, 3)
 		assert_not actual, "Black pawns don't move sideways"
 
-		piece_obstruction = FactoryGirl.create(:pawn, :x_coord => 3, :y_coord => 5, :color => "white")
-		actual = piece.is_move_allowed?(3, 6)
-		assert actual, "There should be an obstruction preventing the piece to move"
-
 		# add tests to ensure pieces don't move off the board
 
 	end
