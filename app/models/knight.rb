@@ -41,7 +41,7 @@ class Knight < Piece
 
 		moves.push(move1, move2, move3, move4, move5, move6, move7, move8)
 
-		moves.delete_if { |move| move == nil }
+		 moves.delete_if {|move| move.include?(nil)}
 
 
 				return moves
