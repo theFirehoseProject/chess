@@ -21,4 +21,12 @@ FactoryGirl.define do
     game
   end
 
+  factory :bishop do     
+    x_coord     "2"
+    y_coord     "3"
+    color       "white"
+    game
+  end
+
+
 end

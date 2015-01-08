@@ -74,5 +74,29 @@ class PieceTest < ActiveSupport::TestCase
 		# add tests to ensure pieces don't move off the board
 
 	end
+	test "check bishop moves are legit" do 		
+
+		piece = FactoryGirl.create(:bishop, :x_coord => 3, :y_coord => 4)
+		actual = piece.is_move_allowed?(5, 2)
+		assert actual, "Bishops move diagonally right up the board 1 or more places"
+
+		actual = piece.is_move_allowed?(5, 6)
+		assert actual, "Bishops move diagonally right down the board 1 or more places"
+
+		actual = piece.is_move_allowed?(1, 6)
+		assert actual, "Bishops move diagonally left up the board 1 or more places"
+
+		actual = piece.is_move_allowed?(1, 2)
+		assert actual, "Bishops move diagonally left down the board 1 or more places"
+
+		actual = piece.is_move_allowed?(3, 3)
+		assert_not actual, "Bishops don't move straight up the board"
+
+		actual = piece.is_move_allowed?(4, 4)
+		assert_not actual, "Bishops don't move sideways"
+
+		# add tests to ensure pieces don't move off the board
+
+	end
 
 end
