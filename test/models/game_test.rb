@@ -21,6 +21,7 @@ class GameTest < ActiveSupport::TestCase
 
 		actual = game.is_move_obstructed?(piece_to_move.id,6, 6)
 		assert_nil actual, "Should return nil if destination tile is not on horiz/vert/diagonal line from piece tile"
+
 	end
 
 	test "check obstruction and move validity logic combined" do

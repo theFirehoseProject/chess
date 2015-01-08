@@ -71,6 +71,10 @@ class PieceTest < ActiveSupport::TestCase
 		actual = piece.is_move_allowed?(4, 3)
 		assert_not actual, "Black pawns don't move sideways"
 
+		piece_obstruction = FactoryGirl.create(:pawn, :x_coord => 3, :y_coord => 5, :color => "white")
+		actual = piece.is_move_allowed?(3, 6)
+		assert actual, "There should be an obstruction preventing the piece to move"
+
 		# add tests to ensure pieces don't move off the board
 
 	end
@@ -92,5 +96,9 @@ class PieceTest < ActiveSupport::TestCase
 
 		actual = piece.is_move_allowed?(8, 0)
 		assert_not actual
+
+		piece_obstruction = FactoryGirl.create(:pawn, :x_coord => 0, :y_coord => 1, :color => "white")
+		actual = piece.is_move_allowed?(0, 2)
+		assert actual, "There should be an obstruction preventing the piece to move"
 	end
 end

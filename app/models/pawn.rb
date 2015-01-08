@@ -13,7 +13,7 @@ class Pawn < Piece
 			# and vice versa
 			return !self.game.is_move_obstructed?(self.id, new_x, new_y)
 		else 
-			return nil
+			return false
 		end
 	end
 
