@@ -6,19 +6,6 @@ class Knight < Piece
 		if legit_moves.include? [new_x, new_y]
 			move_logic_is_valid = true
 		end		
-
-		# if the destination location obeys the game rules, then check for obstructions
-		if move_logic_is_valid
-			# if is_move_obstructed returns true, then return 'false' for main function,
-			# and vice versa
-			return !self.game.is_move_obstructed?(self.id, new_x, new_y)
-		else 
-			return nil
-		end
-		# (1) is the target move allowed by the game piece logic? 
-		# (2) is there an obstruction in the way? the game model
-		#  	  has a function that checks this:
-		#  		   is_move_obstructed?(piece_id, new_x, new_y)
 	end
 
 	def legit_moves
@@ -26,35 +13,35 @@ class Knight < Piece
 		x_init = piece.x_coord
 		y_init = piece.y_coord
 		moves = []
-		op1 = x_init+1
-		op2 = x_init-1
-		op3 = x_init+2
-		op4 = x_init-2
-		op5 = y_init+1
-		op6 = y_init-1
-		op7 = y_init+2
-		op8 = y_init-2
+		x_plus1 = x_init+1
+		x_minus1 = x_init-1
+		x_plus2 = x_init+2
+		x_minus2 = x_init-2
+		y_plus1 = y_init+1
+		y_minus1 = y_init-1
+		y_plus2 = y_init+2
+		y_minus2 = y_init-2
 
 
-		(op1 > 7 || op7 > 7 )? move1 = nil : move1 = [op1, op7]
+		(x_plus1 > 7 || y_plus2 > 7 )? move1 = nil : move1 = [x_plus1, y_plus2]
 
-		(op1 > 7 || op8 < 0 )? move2 = nil : move2 = [op1, op8]
+		(x_plus1 > 7 || y_minus2 < 0 )? move2 = nil : move2 = [x_plus1, y_minus2]
 
-		(op2 < 0 || op7 > 7 )? move3 = nil : move3 = [op2, op7]		
+		(x_minus1 < 0 || y_plus2 > 7 )? move3 = nil : move3 = [x_minus1, y_plus2]		
 
-		(op2 < 0 || op8 < 0 )? move4 = nil : move4 = [op2, op8]		
+		(x_minus1 < 0 || y_minus2 < 0 )? move4 = nil : move4 = [x_minus1, y_minus2]		
 
-		(op3 > 7 || op5 > 7 )? move5 = nil : move5 = [op3, op5]		
+		(x_plus2 > 7 || y_plus1 > 7 )? move5 = nil : move5 = [x_plus2, y_plus1]		
 
-		(op3 > 7 || op6 < 0 )? move6 = nil : move6 = [op3, op6]
+		(x_plus2 > 7 || y_minus1 < 0 )? move6 = nil : move6 = [x_plus2, y_minus1]
 
-		(op4 < 0 || op5 > 7)? move7 = nil : move7 = [op4, op5]
+		(x_minus2 < 0 || y_plus1 > 7)? move7 = nil : move7 = [x_minus2, y_plus1]
 				
-		(op4 < 0 || op6 < 0)? move8 = nil : move8 = [op4,  op6]
+		(x_minus2 < 0 || y_minus1 < 0)? move8 = nil : move8 = [x_minus2,  y_minus1]
 
 		moves.push(move1, move2, move3, move4, move5, move6, move7, move8)
 
-		moves.delete_if {|move| move == nil}
+		moves.delete_if { |move| move == nil }
 
 
 				return moves
