@@ -21,4 +21,10 @@ FactoryGirl.define do
     game
   end
 
+  factory :knight do     
+    x_coord     "3"
+    y_coord     "4"
+    game
+  end
+
 end
