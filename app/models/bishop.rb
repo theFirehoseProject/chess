@@ -13,7 +13,7 @@ class Bishop < Piece
 			# and vice versa
 			return !self.game.is_move_obstructed?(self.id, new_x, new_y)
 		else 
-			return nil
+			return false
 		end
 	end
 
@@ -39,7 +39,7 @@ class Bishop < Piece
 
 		moves.push(move1, move2, move3, move4)
 		
-		moves.delete_if {|move| move.include?(nil)}
+		moves.flatten!
 
 		end
 				return moves
