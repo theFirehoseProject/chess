@@ -95,6 +95,9 @@ class PieceTest < ActiveSupport::TestCase
 		actual = piece.is_move_allowed?(4, 4)
 		assert_not actual, "Bishops don't move sideways"
 
+		actual = piece.is_move_allowed?(8, -1)
+		assert_not actual, "Bishops don't move off the board"
+
 		# add tests to ensure pieces don't move off the board
 
 	end

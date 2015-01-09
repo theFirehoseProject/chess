@@ -19,9 +19,8 @@ class Bishop < Piece
 
 	def legit_moves
 	
-		piece = Piece.find(self.id)
-		x_init = piece.x_coord
-		y_init = piece.y_coord
+		x_init = self.x_coord
+		y_init = self.y_coord
 		squares = [1,2,3,4,5,6,7]
 		moves = []
 
@@ -39,7 +38,7 @@ class Bishop < Piece
 
 		moves.push(move1, move2, move3, move4)
 		
-		moves.flatten!
+		moves.delete_if { |move| move.include?(nil)}
 
 		end
 				return moves
