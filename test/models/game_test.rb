@@ -38,4 +38,17 @@ class GameTest < ActiveSupport::TestCase
 		actual = piece_to_move.is_move_allowed?(2,5)
 		assert actual, "Move is valid and there is no obstruction detected on target tile"
 	end
+
+	test "check turn logic" do
+		game = FactoryGirl.create(:game)
+		actual = game.player_turn
+		assert_equal "white", actual, "Player at start of game should be white" 
+
+    game.next_player
+    actual = game.player_turn
+    assert_equal "black", actual, "Player after first turn should be black" 
+
+    assert_equal "white", game.get_player_color(game.user.id), "First player (user) should be white"
+    assert_equal "black", game.get_player_color(game.opponent.id), "Second player (opponent) should be black"
+	end
 end

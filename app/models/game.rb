@@ -8,9 +8,10 @@ class Game < ActiveRecord::Base
 	has_many :bishops
 
 	belongs_to :user
-    belongs_to :opponent, :foreign_key => 'opponent_id', :class_name => User
+  belongs_to :opponent, :foreign_key => 'opponent_id', :class_name => User
 	scope :for_user, lambda {|user_id| where("user_id = ? OR opponent_id = ?", user_id, user_id)}
-
+	before_save :default_values
+  
 	INITIAL_BOARD_PIECES = [
 		['white', [0, 0], 'rook'],
 		['white', [1, 0], 'knight'],
@@ -64,6 +65,28 @@ class Game < ActiveRecord::Base
 			end
 		end
 	end
+
+	def next_player
+		if self.player_turn == "white"
+			self.update_attributes(player_turn: "black")
+			return true
+		elsif self.player_turn == "black"
+			self.update_attributes(player_turn: "white")
+			return true
+		else
+			return nil
+		end
+	end
+
+  def get_player_color(user_id)
+    if user_id == self.user.id 
+      return "white"
+    elsif user_id == self.opponent.id
+      return "black"
+    else
+      return nil
+    end
+  end
 
 	def is_move_obstructed?(piece_id, new_x, new_y)
 		# does the following operations:
@@ -124,5 +147,11 @@ class Game < ActiveRecord::Base
 		end
 		return obstruction
 	end
+
+	private
+
+		def default_values
+		    self.player_turn ||= 'white'
+		end
 
 end

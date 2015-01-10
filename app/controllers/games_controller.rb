@@ -18,9 +18,16 @@ class GamesController < ApplicationController
   	#@player2 = User.find(@game.opponent_id)
     @player1 = @game.user
     @player2 = @game.opponent
+
+    @current_user_color = @game.get_player_color(current_user.id)
+    if @current_user_color == @game.player_turn
+      @current_user_turn = true
+    else
+      @current_user_turn = false
+    end    
   end
 
-  def select
+  def select    
     @game = Game.find(params[:id])
     @pieces = @game.pieces
     @piece = Piece.find(params[:piece_id])
@@ -33,6 +40,8 @@ class GamesController < ApplicationController
     @piece = Piece.find(params[:piece_id])
     if ! @piece.move_piece!(params[:x_coord], params[:y_coord])
       flash[:notice] = "That was not a valid move"
+    else
+      @piece.game.next_player
     end
     redirect_to game_path(@piece.game)
   end
