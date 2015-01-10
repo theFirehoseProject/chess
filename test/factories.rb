@@ -28,4 +28,11 @@ FactoryGirl.define do
     game
   end
 
+  factory :rook do
+    x_coord     "3"
+    y_coord     "6"
+    color       "black"
+    game
+  end
+  
 end
