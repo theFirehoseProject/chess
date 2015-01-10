@@ -17,7 +17,7 @@ class Rook < Piece
 	end
 
 def legit_moves
-		# return an array of squares that the piece can move to
+
 		x_init = self.x_coord
 		y_init = self.y_coord
 		tiles = [1, 2, 3, 4, 5, 6, 7]
@@ -30,17 +30,12 @@ def legit_moves
 			(y_init + x > 7)? y_move1 = nil : y_move1 = y_init + x
 			(y_init - x < 0)? y_move2 = nil : y_move2 = y_init - x
 
-			# Sideways to the right
 			move1 = [x_move1, y_init]
-			# Sideways to the left
 			move2 = [x_move2, y_init]
-			# Up move
 			move3 = [x_init, y_move1]
-			# Down move
 			move4 = [x_init, y_move2]
 
 			moves.push(move1, move2, move3, move4)
-
 		end
 
 		moves.delete_if {|moves| moves.include?(nil)}
