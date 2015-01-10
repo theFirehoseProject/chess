@@ -117,13 +117,10 @@ class Game < ActiveRecord::Base
 			end
 		end
 		
-		#puts places_between.inspect
-		#puts pieces.inspect
 		# get coordinates for all game pieces
 		pieces = self.pieces.to_a
 		#puts pieces.inspect
 		all_piece_coordinates = pieces.map { |p| [p.x_coord, p.y_coord] }
-		#puts all_piece_coordinates.inspect
 		# check if any current game pieces overlap with 
 		# the coordinates between target and current piece position
 		obstruction = false
@@ -135,16 +132,11 @@ class Game < ActiveRecord::Base
 				obstruction = true
 			end
 
-			if places_between.include?(piece_coordinates) && !is_current_piece && !is_destination_piece
-
-				
+			if places_between.include?(piece_coordinates) && !is_current_piece && !is_destination_piece				
 				obstruction = true
-
 				break
 			end		
-
 		end
-		#puts obstruction.inspect
 		return obstruction
 	end
 
