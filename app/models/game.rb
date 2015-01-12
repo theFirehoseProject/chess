@@ -110,8 +110,9 @@ class Game < ActiveRecord::Base
 			else
 				if x_diff == y_diff
 					places_between << [new_x, new_y]
-				else
+				elsif x_diff == 0
 					places_between << [current_piece.x_coord, new_y]
+				else
 					places_between << [new_x, current_piece.y_coord]
 				end
 			end

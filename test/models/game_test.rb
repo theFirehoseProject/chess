@@ -51,4 +51,18 @@ class GameTest < ActiveSupport::TestCase
 		actual = piece_to_move.is_move_allowed?(2,5)
 		assert actual, "Move is valid and there is no obstruction detected on target tile"
 	end
+
+	test "check obstruction logic shows obstruction only up/down or only across - not both" do
+		game = FactoryGirl.create(:game)
+		piece_to_move = FactoryGirl.create(:rook, :game_id => game.id, :x_coord => 3, :y_coord => 3, :color => "white")
+		different_piece = FactoryGirl.create(:pawn, :game_id => game.id, :x_coord => 4, :y_coord => 3, :color => "white")
+		piece_to_move2 = FactoryGirl.create(:queen, :game_id => game.id, :x_coord => 5, :y_coord => 5, :color => "white")
+		another_piece = FactoryGirl.create(:pawn, :game_id => game.id, :x_coord => 5, :y_coord => 6, :color => "white")
+
+		actual = game.is_move_obstructed?(piece_to_move.id, 3, 4)
+		assert_not actual, "Piece moving up is showing obstruction to the right"
+
+		actual = game.is_move_obstructed?(piece_to_move.id, 6, 5)
+		assert_not actual, "Piece moving to the right is showing obstruction up"
+	end
 end
