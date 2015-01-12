@@ -1,24 +1,52 @@
 	<h1>Game#show</h1>
-	<h2>Click on the piece that you would like to move</h2>
+	<% if @current_user_turn %>
+		<h2>Click on the piece that you would like to move</h2>
 
-	<p><b><%= @player1.email %></b> vs <b><%= @player2.email %></b></p>
-	<div class="table-responsive">
-	<table class="board table chess">
+		<p><b><%= @player1.email %></b> vs <b><%= @player2.email %></b></p>
+		<div class="table-responsive">
+		<table class="board table chess">
 
-	<% first_tile_white = true %>
-	<% 7.downto(0) do |row| %>
-		<tr class="row row<%= row %>">
-		<% 0.upto(7) do |column| %>		
-			<td class="col-xs-1 space <%= column %><%= row %> <%= tile_color(first_tile_white, column) %>">
-				<% @pieces.each do |piece| %>
-				    <% if piece.x_coord == column && piece.y_coord == row %> 
-				    	<%= link_to image_tag(piece.image, :class=>"img-responsive"), select_path( :piece_id => piece, :x_coord => piece.x_coord, :y_coord => piece.y_coord ) %>
-				    <% end%>
-				<% end %>
-			</td>
+		<% first_tile_white = true %>
+		<% 7.downto(0) do |row| %>
+			<tr class="row row<%= row %>">
+			<% 0.upto(7) do |column| %>		
+				<td class="col-xs-1 space <%= column %><%= row %> <%= tile_color(first_tile_white, column) %>">
+					<% @pieces.each do |piece| %>
+					    <% if piece.x_coord == column && piece.y_coord == row && piece.color == @current_user_color %> 
+					    	<%= link_to image_tag(piece.image, :class=>"img-responsive"), select_path( :piece_id => piece, :x_coord => piece.x_coord, :y_coord => piece.y_coord ) %>
+					    <% elsif piece.x_coord == column && piece.y_coord == row %>
+					    	<%= image_tag(piece.image, :class=>"img-responsive") %>
+					    <% end%>
+					<% end %>
+				</td>
+			<% end %>
+			</tr>
+			<% first_tile_white = first_tile_white.! %>
 		<% end %>
-		</tr>
-		<% first_tile_white = first_tile_white.! %>
+		</table>
+		</div>
+	<% else %>
+		<h2>Waiting for other player to move...</h2>
+
+		<p><b><%= @player1.email %></b> vs <b><%= @player2.email %></b></p>
+		<div class="table-responsive">
+		<table class="board table chess">
+
+		<% first_tile_white = true %>
+		<% 7.downto(0) do |row| %>
+			<tr class="row row<%= row %>">
+			<% 0.upto(7) do |column| %>		
+				<td class="col-xs-1 space <%= column %><%= row %> <%= tile_color(first_tile_white, column) %>">
+					<% @pieces.each do |piece| %>
+					    <% if piece.x_coord == column && piece.y_coord == row %> 
+					    	<%= image_tag(piece.image, :class=>"img-responsive") %>
+					    <% end%>
+					<% end %>
+				</td>
+			<% end %>
+			</tr>
+			<% first_tile_white = first_tile_white.! %>
+		<% end %>
+		</table>
+		</div>
 	<% end %>
-	</table>
-	</div>
