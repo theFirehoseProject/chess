@@ -74,6 +74,48 @@ class PieceTest < ActiveSupport::TestCase
 		# add tests to ensure pieces don't move off the board
 
 	end
+
+	test "check knight moves are legit" do 		
+
+		piece = FactoryGirl.create(:knight, :x_coord => 3, :y_coord => 4)
+		#knights can move to any of 8 places within 3 total places up and over from start
+		actual = piece.is_move_allowed?(4, 6)
+		assert actual, "Allowed Knight move three spaces total"
+
+		actual = piece.is_move_allowed?(2, 6)
+		assert actual, "Allowed Knight move three spaces total"
+
+		actual = piece.is_move_allowed?(1, 5)
+		assert actual, "Allowed Knight move three spaces total"
+
+		actual = piece.is_move_allowed?(1, 3)
+		assert actual, "Allowed Knight move three spaces total"
+
+		actual = piece.is_move_allowed?(2, 2)
+		assert actual, "Allowed Knight move three spaces total"
+
+		actual = piece.is_move_allowed?(4, 2)
+		assert actual, "Allowed Knight move three spaces total"
+
+		actual = piece.is_move_allowed?(5, 3)
+		assert actual, "Allowed Knight move three spaces total"
+
+		actual = piece.is_move_allowed?(5, 5)
+		assert actual, "Allowed Knight move three spaces total"
+
+		actual = piece.is_move_allowed?(3, 3)
+		assert_not actual, "Knights don't move straight up the board"
+
+		actual = piece.is_move_allowed?(4, 4)
+		assert_not actual, "Knights don't move sideways"
+
+
+  end
+
+		# add tests to ensure pieces don't move off the board
+		# add to piece, as no piece can have a coordingat of - any number  or >7
+
+
 	test "check bishop moves are legit" do 		
 
 		piece = FactoryGirl.create(:bishop, :x_coord => 3, :y_coord => 4)
@@ -138,6 +180,7 @@ class PieceTest < ActiveSupport::TestCase
 
 		actual = piece.is_move_allowed?(8, 8)
 		assert_not actual, "King cannot move diagonally off the board more than one place."
+
 	end
 
 end
