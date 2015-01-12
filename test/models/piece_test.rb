@@ -74,6 +74,7 @@ class PieceTest < ActiveSupport::TestCase
 		# add tests to ensure pieces don't move off the board
 
 	end
+
 		test "check knight moves are legit" do 		
 
 		piece = FactoryGirl.create(:knight, :x_coord => 3, :y_coord => 4)
@@ -112,6 +113,72 @@ class PieceTest < ActiveSupport::TestCase
 
 		# add tests to ensure pieces don't move off the board
 		# add to piece, as no piece can have a coordingat of - any number  or >7
+
+
+	test "check bishop moves are legit" do 		
+
+		piece = FactoryGirl.create(:bishop, :x_coord => 3, :y_coord => 4)
+		actual = piece.is_move_allowed?(5, 2)
+		assert actual, "Bishops move diagonally right up the board 1 or more places"
+
+		actual = piece.is_move_allowed?(5, 6)
+		assert actual, "Bishops move diagonally right down the board 1 or more places"
+
+		actual = piece.is_move_allowed?(1, 6)
+		assert actual, "Bishops move diagonally left up the board 1 or more places"
+
+		actual = piece.is_move_allowed?(1, 2)
+		assert actual, "Bishops move diagonally left down the board 1 or more places"
+
+		actual = piece.is_move_allowed?(3, 3)
+		assert_not actual, "Bishops don't move straight up the board"
+
+		actual = piece.is_move_allowed?(4, 4)
+		assert_not actual, "Bishops don't move sideways"
+
+		actual = piece.is_move_allowed?(8, -1)
+		assert_not actual, "Bishops don't move off the board"
+
+		# add tests to ensure pieces don't move off the board
+
+	end
+
+	test "check king moves are legit" do
+		# Kings can move up, down, left, right, and diagonal up or down 1 place only. 
+		piece = FactoryGirl.create(:king, :x_coord => 4, :y_coord => 0, :color => "white")
+
+		actual = piece.is_move_allowed?(4, 1)
+		assert actual, "King moves up the board 1 place."
+
+		actual = piece.is_move_allowed?(5, 0)
+		assert actual, "King moves horizontally to his right 1 place."
+
+		actual = piece.is_move_allowed?(5, 1)
+		assert actual, "King moves diagonally up to his right 1 place."
+
+		actual = piece.is_move_allowed?(3, 0)
+		assert actual, "King moves horizontally to his left 1 place."
+
+		actual = piece.is_move_allowed?(3, 1)
+		assert actual, "King moves diagonally up to his left 1 place."
+
+		actual = piece.is_move_allowed?(4, 2)
+		assert_not actual, "King cannot move up the board more than 1 place."
+
+		actual = piece.is_move_allowed?(-1, 0)
+		assert_not actual, "King cannot move horizontally to the left off the board."
+
+		actual = piece.is_move_allowed?(6, 0)
+		assert_not actual, "King cannot move horizontally more than 1 place to the right."
+
+		actual = piece.is_move_allowed?(6, 2)
+		assert_not actual, "King cannot move diagonally right up the board more than 1 place."
+
+		actual = piece.is_move_allowed?(4, -1)
+		assert_not actual, "King cannot move down off the board."
+
+		actual = piece.is_move_allowed?(8, 8)
+		assert_not actual, "King cannot move diagonally off the board more than one place."
 
 	end
 

@@ -27,4 +27,18 @@ FactoryGirl.define do
     game
   end
 
+  factory :bishop do     
+    x_coord     "2"
+    y_coord     "3"
+    color       "white"
+    game
+  end
+
+  factory :king do
+    x_coord     "4"
+    y_coord     "0"
+    color       "white"
+    game 
+  end
+
 end
