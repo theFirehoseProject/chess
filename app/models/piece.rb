@@ -1,7 +1,7 @@
 class Piece < ActiveRecord::Base
 	belongs_to :game
 
-	def move_piece!(x_coord, y_coord)   	
+	def move_piece!(x_coord, y_coord)
 		captured = self.game.pieces.where(:x_coord => x_coord, :y_coord => y_coord).first
 		if captured.present? && self.color != captured.color
 			captured.update_attributes(:x_coord => nil, :y_coord => nil)
@@ -11,7 +11,7 @@ class Piece < ActiveRecord::Base
     	else
       		self.update_attributes({:x_coord => x_coord, :y_coord => y_coord})
     	end
-		return true
+		return true	
 	end
 
 	# ========================================================

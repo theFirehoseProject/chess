@@ -93,7 +93,9 @@ class Game < ActiveRecord::Base
 		# line away from current piece
 		x_diff = current_piece.x_coord - new_x
 		y_diff = current_piece.y_coord - new_y
-		unless (x_diff == y_diff) || (x_diff == 0) || (y_diff == 0)
+
+		if !(((x_diff == y_diff) || (x_diff == 0) || (y_diff == 0)))
+		# Raise a BIG exception	
 			return nil
 		end
 
@@ -102,6 +104,7 @@ class Game < ActiveRecord::Base
 		places_between = [ [new_x, new_y] ]
 		back_to_start = false
 		current_coordinates = [current_piece.x_coord, current_piece.y_coord]
+
 		until back_to_start
 			if new_x > current_piece.x_coord
 				new_x = new_x - 1
@@ -118,19 +121,32 @@ class Game < ActiveRecord::Base
 			if current_coordinates == [new_x, new_y]
 				back_to_start = true
 			else
-				places_between << [new_x, new_y]
+				if x_diff == y_diff
+					places_between << [new_x, new_y]
+				elsif x_diff == 0
+					places_between << [current_piece.x_coord, new_y]
+				else
+					places_between << [new_x, current_piece.y_coord]
+				end
 			end
 		end
-
+		
 		# get coordinates for all game pieces
 		pieces = self.pieces.to_a
+		#puts pieces.inspect
 		all_piece_coordinates = pieces.map { |p| [p.x_coord, p.y_coord] }
-
 		# check if any current game pieces overlap with 
 		# the coordinates between target and current piece position
 		obstruction = false
-		all_piece_coordinates.each do |piece_coordinates|			
-			if places_between.include? piece_coordinates
+		all_piece_coordinates.each do |piece_coordinates|
+			is_current_piece = current_coordinates == piece_coordinates
+			is_destination_piece = piece_coordinates == [new_x, new_y]	
+
+			if x_diff == 0 && y_diff == 0
+				obstruction = true
+			end
+
+			if places_between.include?(piece_coordinates) && !is_current_piece && !is_destination_piece				
 				obstruction = true
 				break
 			end		
