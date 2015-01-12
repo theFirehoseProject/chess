@@ -75,7 +75,7 @@ class PieceTest < ActiveSupport::TestCase
 
 	end
 
-		test "check knight moves are legit" do 		
+	test "check knight moves are legit" do 		
 
 		piece = FactoryGirl.create(:knight, :x_coord => 3, :y_coord => 4)
 		#knights can move to any of 8 places within 3 total places up and over from start
@@ -110,6 +110,7 @@ class PieceTest < ActiveSupport::TestCase
 		assert_not actual, "Knights don't move sideways"
 
 
+  end
 
 		# add tests to ensure pieces don't move off the board
 		# add to piece, as no piece can have a coordingat of - any number  or >7
