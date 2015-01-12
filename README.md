@@ -1,6 +1,6 @@
 Chesster!
 ---------
-Chesster! is a Ruby on Rails app being developed as a group project by students on [The Firehose Project](http://www.thefirehoseproject.com).
+Chesster! is a cool Ruby on Rails app being developed as a group project by students on [The Firehose Project](http://www.thefirehoseproject.com).
 
 Chesster is an online chess game that allows you to play chess with other live players. 
 
