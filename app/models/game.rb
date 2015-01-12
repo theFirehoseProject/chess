@@ -48,20 +48,10 @@ class Game < ActiveRecord::Base
 
 	def initialize_the_board!
 		INITIAL_BOARD_PIECES.each do |piece|
-			current_piece = piece[2]
-			if current_piece == "pawn"
-				self.pawns.create(:color => piece[0], :x_coord => piece[1][0], :y_coord => piece[1][1], :image => Pawn.get_image(piece[0]))
-			elsif current_piece == "rook"
-				self.rooks.create(:color => piece[0], :x_coord => piece[1][0], :y_coord => piece[1][1], :image => Rook.get_image(piece[0]))
-			elsif current_piece == "knight"
-				self.knights.create(:color => piece[0], :x_coord => piece[1][0], :y_coord => piece[1][1], :image => Knight.get_image(piece[0]))
-			elsif current_piece == "bishop"
-				self.bishops.create(:color => piece[0], :x_coord => piece[1][0], :y_coord => piece[1][1], :image => Bishop.get_image(piece[0]))
-			elsif current_piece == "queen"
-				self.queens.create(:color => piece[0], :x_coord => piece[1][0], :y_coord => piece[1][1], :image => Queen.get_image(piece[0]))
-			elsif current_piece == "king"
-				self.kings.create(:color => piece[0], :x_coord => piece[1][0], :y_coord => piece[1][1], :image => King.get_image(piece[0]))	
-			end
+			# meta-code that generates a new piece based on each row of the INITIAL_BOARD_PIECES array
+			# e.g. for last row, it results in
+			#   self.pawns.create(:color => piece[0], :x_coord => piece[1][0], :y_coord => piece[1][1], :image => Pawn.get_image(piece[0]))
+			self.send("#{piece[2]}s").create(:color => piece[0], :x_coord => piece[1][0], :y_coord => piece[1][1], :image => piece[2].titleize.constantize.get_image(piece[0]))
 		end
 	end
 
