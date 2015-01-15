@@ -1,0 +1,158 @@
+0e3af44 HEAD@{0}: pull origin add-turns: Merge made by the 'recursive' strategy.
+508c22e HEAD@{1}: checkout: moving from bishopMoves to master
+25ef635 HEAD@{2}: checkout: moving from master to bishopMoves
+508c22e HEAD@{3}: checkout: moving from bishopMoves to master
+25ef635 HEAD@{4}: commit: ignore scratch added to git ignore
+ddb60cb HEAD@{5}: checkout: moving from master to bishopMoves
+508c22e HEAD@{6}: checkout: moving from knightMoves to master
+fd4a03d HEAD@{7}: commit: really really ignore scratch
+9fcf694 HEAD@{8}: checkout: moving from master to knightMoves
+508c22e HEAD@{9}: checkout: moving from knightMoves to master
+9fcf694 HEAD@{10}: commit: really ignore scratch files
+061aa8e HEAD@{11}: checkout: moving from bishopMoves to knightMoves
+ddb60cb HEAD@{12}: checkout: moving from knightMoves to bishopMoves
+061aa8e HEAD@{13}: checkout: moving from master to knightMoves
+508c22e HEAD@{14}: checkout: moving from bishopMoves to master
+ddb60cb HEAD@{15}: commit: clean up bishop moves
+a425523 HEAD@{16}: checkout: moving from master to bishopMoves
+508c22e HEAD@{17}: checkout: moving from knightMoves to master
+061aa8e HEAD@{18}: commit: delete if move includes nil
+1d65f69 HEAD@{19}: checkout: moving from master to knightMoves
+508c22e HEAD@{20}: checkout: moving from knightMoves to master
+1d65f69 HEAD@{21}: commit: ignore scratch file
+186e2ae HEAD@{22}: checkout: moving from master to knightMoves
+508c22e HEAD@{23}: checkout: moving from knightMoves to master
+186e2ae HEAD@{24}: commit: cleaned up knight moves
+89942f9 HEAD@{25}: checkout: moving from bishopMoves to knightMoves
+a425523 HEAD@{26}: commit: flatten moves array
+e385003 HEAD@{27}: checkout: moving from master to bishopMoves
+508c22e HEAD@{28}: checkout: moving from knightMoves to master
+89942f9 HEAD@{29}: commit: Knight moves
+6fafd26 HEAD@{30}: checkout: moving from bishopMoves to knightMoves
+e385003 HEAD@{31}: checkout: moving from knightMoves to bishopMoves
+6fafd26 HEAD@{32}: commit: add knight move test to piece test
+508c22e HEAD@{33}: checkout: moving from bishopMoves to knightMoves
+e385003 HEAD@{34}: checkout: moving from knightMoves to bishopMoves
+508c22e HEAD@{35}: checkout: moving from master to knightMoves
+508c22e HEAD@{36}: checkout: moving from bishopMoves to master
+e385003 HEAD@{37}: checkout: moving from master to bishopMoves
+508c22e HEAD@{38}: checkout: moving from bishopMoves to master
+e385003 HEAD@{39}: commit: legit moves and test for bishop
+508c22e HEAD@{40}: checkout: moving from master to bishopMoves
+508c22e HEAD@{41}: pull origin master: Merge made by the 'recursive' strategy.
+bdec776 HEAD@{42}: pull origin master: Merge made by the 'recursive' strategy.
+c6e8029 HEAD@{43}: merge more-logic: Fast-forward
+56a12d9 HEAD@{44}: checkout: moving from more-logic to master
+c6e8029 HEAD@{45}: commit: added trivial change to README.md to check travis
+56a12d9 HEAD@{46}: checkout: moving from master to more-logic
+56a12d9 HEAD@{47}: commit: tidyed up the piece test file--removed the trues travis tes
+6e80662 HEAD@{48}: commit: checking travis passes new true assertion in test
+c9f1baa HEAD@{49}: commit: deleted failing test for travis check from piece_test
+ea4865a HEAD@{50}: merge testTravis: Fast-forward
+2f3661b HEAD@{51}: checkout: moving from testTravis to master
+ea4865a HEAD@{52}: commit: false assertion in piece model to test travis does error when it should
+2f3661b HEAD@{53}: checkout: moving from master to testTravis
+2f3661b HEAD@{54}: commit (merge): added heroku deployment to travis tasks
+044a681 HEAD@{55}: commit: added heroku deployment to travis task
+79c8bb6 HEAD@{56}: checkout: moving from OnlyRuby2TravisFile to master
+55957e7 HEAD@{57}: commit: removed tab spacing from travis
+56cc496 HEAD@{58}: checkout: moving from master to OnlyRuby2TravisFile
+79c8bb6 HEAD@{59}: commit: remove tab spacing from travis file
+53dcc33 HEAD@{60}: checkout: moving from OnlyRuby2TravisFile to master
+56cc496 HEAD@{61}: commit: Ruby2 only in travis file
+53dcc33 HEAD@{62}: checkout: moving from master to OnlyRuby2TravisFile
+53dcc33 HEAD@{63}: commit: travis file updates
+93e3cdf HEAD@{64}: commit: removed jruby mode lines from file
+9f0e633 HEAD@{65}: checkout: moving from GemFileBacktoNoRakeGem to master
+9f0e633 HEAD@{66}: checkout: moving from master to GemFileBacktoNoRakeGem
+9f0e633 HEAD@{67}: commit: undo rake as gem under test
+c0b8c17 HEAD@{68}: commit: removed ruby 1.9.2 from file
+a35e7c7 HEAD@{69}: commit: remove decrepit ruby versions from travis.yml file
+f58755e HEAD@{70}: merge GemfileModForTravis: Fast-forward
+3ef32ee HEAD@{71}: checkout: moving from GemfileModForTravis to master
+f58755e HEAD@{72}: commit: add rake to gemfile for travis
+3ef32ee HEAD@{73}: checkout: moving from master to GemfileModForTravis
+3ef32ee HEAD@{74}: commit: trivial comment edit to travis.yml as a test
+50c1e65 HEAD@{75}: commit: add newline at end of travis file
+f7d185e HEAD@{76}: commit: added travis.yml for continuous integration
+37db4bd HEAD@{77}: checkout: moving from fixMoveClickTarget to master
+798448c HEAD@{78}: commit: deleted scratch file
+f882358 HEAD@{79}: checkout: moving from master to fixMoveClickTarget
+37db4bd HEAD@{80}: commit: fixed move click target
+f882358 HEAD@{81}: merge fixMoveClickTarget: Fast-forward
+14cf7b3 HEAD@{82}: checkout: moving from fixMoveClickTarget to master
+f882358 HEAD@{83}: commit: fix move click target
+688063f HEAD@{84}: checkout: moving from move to fixMoveClickTarget
+688063f HEAD@{85}: pull origin master: Fast-forward
+cb842f1 HEAD@{86}: pull origin master: Fast-forward
+186f307 HEAD@{87}: commit: basic move is happening!
+324f720 HEAD@{88}: commit: move moving along
+14cf7b3 HEAD@{89}: checkout: moving from master to move
+14cf7b3 HEAD@{90}: pull origin master: Merge made by the 'recursive' strategy.
+6867ff3 HEAD@{91}: checkout: moving from select-piece to master
+c9c121a HEAD@{92}: checkout: moving from master to select-piece
+6867ff3 HEAD@{93}: checkout: moving from select-piece to master
+c9c121a HEAD@{94}: checkout: moving from master to select-piece
+6867ff3 HEAD@{95}: checkout: moving from select-piece to master
+c9c121a HEAD@{96}: pull origin select-piece: Fast-forward
+d24f280 HEAD@{97}: checkout: moving from master to select-piece
+6867ff3 HEAD@{98}: pull origin master: Merge made by the 'recursive' strategy.
+795ad02 HEAD@{99}: checkout: moving from create-new-game to master
+17c1a24 HEAD@{100}: pull origin create-new-game: Fast-forward
+f9ac69a HEAD@{101}: checkout: moving from master to create-new-game
+795ad02 HEAD@{102}: checkout: moving from move-test to master
+d24f280 HEAD@{103}: checkout: moving from select-piece to move-test
+d24f280 HEAD@{104}: checkout: moving from master to select-piece
+795ad02 HEAD@{105}: checkout: moving from create-new-game to master
+f9ac69a HEAD@{106}: checkout: moving from master to create-new-game
+795ad02 HEAD@{107}: checkout: moving from create-new-game to master
+f9ac69a HEAD@{108}: checkout: moving from create_new_game to create-new-game
+795ad02 HEAD@{109}: checkout: moving from master to create_new_game
+795ad02 HEAD@{110}: pull origin master: Merge made by the 'recursive' strategy.
+9498152 HEAD@{111}: commit (merge): fix issue 18
+2ea8df9 HEAD@{112}: checkout: moving from issue_18 to master
+75ceaa5 HEAD@{113}: commit: removed board from landing page
+4615226 HEAD@{114}: checkout: moving from master to issue_18
+2ea8df9 HEAD@{115}: commit: removed board from landing page
+4615226 HEAD@{116}: checkout: moving from issue_18 to master
+4615226 HEAD@{117}: checkout: moving from master to issue_18
+4615226 HEAD@{118}: merge logo: Fast-forward
+96106ff HEAD@{119}: checkout: moving from logo to master
+4615226 HEAD@{120}: commit: added logo and simple navbar
+d43557a HEAD@{121}: checkout: moving from master to logo
+96106ff HEAD@{122}: checkout: moving from removeViewsMigration to master
+d43557a HEAD@{123}: commit: dropped view table added devise views
+8038a4c HEAD@{124}: checkout: moving from responsiveImages to removeViewsMigration
+8038a4c HEAD@{125}: pull origin master: Fast-forward
+eb6f608 HEAD@{126}: pull origin master: Fast-forward
+96106ff HEAD@{127}: checkout: moving from master to responsiveImages
+96106ff HEAD@{128}: checkout: moving from master to master
+96106ff HEAD@{129}: commit: made piece images responsive this cleaner
+d97847f HEAD@{130}: merge add_image_col_to_pieces: Fast-forward
+bc0a581 HEAD@{131}: checkout: moving from add_image_col_to_pieces to master
+d97847f HEAD@{132}: commit: added images to view
+bc0a581 HEAD@{133}: checkout: moving from master to add_image_col_to_pieces
+bc0a581 HEAD@{134}: merge peices_images: Fast-forward
+c527b65 HEAD@{135}: checkout: moving from peices_images to master
+bc0a581 HEAD@{136}: commit: added gifs for peices to images
+5898dca HEAD@{137}: checkout: moving from board_table to peices_images
+5898dca HEAD@{138}: pull origin show_board: Fast-forward
+2f0dd8e HEAD@{139}: pull origin master: Fast-forward
+dbe0486 HEAD@{140}: pull origin master: Fast-forward
+c527b65 HEAD@{141}: checkout: moving from master to board_table
+c527b65 HEAD@{142}: checkout: moving from board to master
+a83538a HEAD@{143}: checkout: moving from master to board
+c527b65 HEAD@{144}: pull origin master: Merge made by the 'recursive' strategy.
+a83538a HEAD@{145}: checkout: moving from board to master
+a83538a HEAD@{146}: checkout: moving from master to board
+a83538a HEAD@{147}: checkout: moving from board to master
+a83538a HEAD@{148}: checkout: moving from master to board
+a83538a HEAD@{149}: commit: responsive table version of board
+174d852 HEAD@{150}: checkout: moving from devise-simple_form-bootstrap to master
+174d852 HEAD@{151}: merge master: Fast-forward
+a5bb17e HEAD@{152}: checkout: moving from master to devise-simple_form-bootstrap
+174d852 HEAD@{153}: commit (merge): Merge branch 'master' of https://github.com/theFirehoseProject/chess
+a5bb17e HEAD@{154}: checkout: moving from devise-simple_form-bootstrap to master
+a5bb17e HEAD@{155}: checkout: moving from master to devise-simple_form-bootstrap
+a5bb17e HEAD@{156}: commit: added devise, bootstrap-sass, simple_form
+629a6f5 HEAD@{157}: clone: from https://github.com/theFirehoseProject/chess.git
