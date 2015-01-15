@@ -57,19 +57,20 @@
 <script>
 $(function() {
     $(".moveable").draggable();
-	$("td.space").droppable({
-		drop: function( event, ui ) {
-			var drop_target_id = event.target.id;
-			var target_x = drop_target_id[0];
-			var target_y = drop_target_id[1];
-			var piece_id = ui.draggable.prop('id');
-			var path = "/games/<%= @game.id.to_s %>/" + piece_id + "/" + target_x + "/" + target_y;
-			var $form =  $('#move');
-			$form.attr('action', path); 
-			console.log(path);
-			$form.submit();			
-        	//alert("Piece " + piece_id + " dropped on tile: x= " + target_x + ", y= " + target_y);
-      }		
-	});
+			$("td.space").droppable({
+				drop: function( event, ui ) {
+					var drop_target_id = event.target.id;
+					var target_x = drop_target_id[0];
+					var target_y = drop_target_id[1];
+					var piece_id = ui.draggable.prop('id');
+					var path = "/games/<%= @game.id.to_s %>/" + piece_id + "/" + target_x + "/" + target_y;
+					var $form =  $('#move');
+					$form.attr('action', path); 
+					console.log(path);
+					$form.submit();			
+		        	//alert("Piece " + piece_id + " dropped on tile: x= " + target_x + ", y= " + target_y);
+		      }		
+			});
   });
 </script>
+
