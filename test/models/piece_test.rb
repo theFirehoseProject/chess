@@ -75,6 +75,54 @@ class PieceTest < ActiveSupport::TestCase
 
 	end
 
+
+	test "check queen moves are legit" do
+		piece = FactoryGirl.create(:queen, :x_coord => 2, :y_coord => 2, :color => "white")
+
+		actual = piece.is_move_allowed?(4, 2)
+		assert actual, "Queen moves horizontally to the right"
+
+		actual = piece.is_move_allowed?(2, 4)
+		assert actual, "Queen moves up the board"
+
+		actual = piece.is_move_allowed?(3, 3)
+		assert actual, "Queen moves diagonally up and to the right"
+
+		actual = piece.is_move_allowed?(2, 8)
+		assert_not actual, "Queen can not move up off the board"
+
+		actual = piece.is_move_allowed?(-1, 2)
+		assert_not actual, "Queen can not move horizontally off the board to the left"
+
+		piece_obstruction = FactoryGirl.create(:pawn, :x_coord => 2, :y_coord => 3, :color => "white", :game => piece.game)
+		piece.reload
+		actual = piece.is_move_allowed?(2, 4)
+		assert ! actual, "There should be an obstruction preventing the piece to move"
+	end
+
+	test "check rook moves are legit" do
+		piece = FactoryGirl.create(:rook, :x_coord => 0, :y_coord => 0, :color => "white")
+
+		actual = piece.is_move_allowed?(0, 2)
+		assert actual
+
+		actual = piece.is_move_allowed?(2, 0)
+		assert actual
+
+		actual = piece.is_move_allowed?(2, 2)
+		assert_not actual
+
+		actual = piece.is_move_allowed?(0, 8)
+		assert_not actual
+
+		actual = piece.is_move_allowed?(8, 0)
+		assert_not actual
+
+		piece_obstruction = FactoryGirl.create(:pawn, :x_coord => 0, :y_coord => 1, :color => "white")
+		actual = piece.is_move_allowed?(0, 2)
+		assert actual, "There should be an obstruction preventing the piece to move"
+	end
+	
 	test "check knight moves are legit" do 		
 
 		piece = FactoryGirl.create(:knight, :x_coord => 3, :y_coord => 4)

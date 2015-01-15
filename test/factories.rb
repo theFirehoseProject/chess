@@ -21,9 +21,17 @@ FactoryGirl.define do
     game
   end
 
+  factory :queen do
+    x_coord     "2"
+    y_coord     "2"
+    color       "white"
+    game
+  end
+
   factory :knight do     
     x_coord     "3"
     y_coord     "4"
+    color       "white"
     game
   end
 
@@ -34,6 +42,13 @@ FactoryGirl.define do
     game
   end
 
+  factory :rook do
+    x_coord     "3"
+    y_coord     "6"
+    color       "black"
+    game
+  end
+  
   factory :king do
     x_coord     "4"
     y_coord     "0"

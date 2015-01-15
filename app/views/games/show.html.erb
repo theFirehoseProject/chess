@@ -10,10 +10,10 @@
 		<% 7.downto(0) do |row| %>
 			<tr class="row row<%= row %>">
 			<% 0.upto(7) do |column| %>		
-				<td class="col-xs-1 space <%= column %><%= row %> <%= tile_color(first_tile_white, column) %>">
+				<td class="col-xs-1 space <%= column %><%= row %> <%= tile_color(first_tile_white, column) %>" id="<%= column %><%= row %>">
 					<% @pieces.each do |piece| %>
 					    <% if piece.x_coord == column && piece.y_coord == row && piece.color == @current_user_color %> 
-					    	<%= link_to image_tag(piece.image, :class=>"img-responsive"), select_path( :piece_id => piece, :x_coord => piece.x_coord, :y_coord => piece.y_coord ) %>
+					    	<%= link_to image_tag(piece.image, :class=>"img-responsive moveable", :id=>piece.id), select_path( :piece_id => piece, :x_coord => piece.x_coord, :y_coord => piece.y_coord ) %>
 					    <% elsif piece.x_coord == column && piece.y_coord == row %>
 					    	<%= image_tag(piece.image, :class=>"img-responsive") %>
 					    <% end%>
@@ -50,3 +50,26 @@
 		</table>
 		</div>
 	<% end %>
+
+<%= form_tag "#", :id => 'move'%>
+
+
+<script>
+$(function() {
+    $(".moveable").draggable();
+	$("td.space").droppable({
+		drop: function( event, ui ) {
+			var drop_target_id = event.target.id;
+			var target_x = drop_target_id[0];
+			var target_y = drop_target_id[1];
+			var piece_id = ui.draggable.prop('id');
+			var path = "/games/<%= @game.id.to_s %>/" + piece_id + "/" + target_x + "/" + target_y;
+			var $form =  $('#move');
+			$form.attr('action', path); 
+			console.log(path);
+			$form.submit();			
+        	//alert("Piece " + piece_id + " dropped on tile: x= " + target_x + ", y= " + target_y);
+      }		
+	});
+  });
+</script>
