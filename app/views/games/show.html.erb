@@ -1,6 +1,6 @@
 	<h1>Game#show</h1>
 	<% if @current_user_turn %>
-		<h2>Click on the piece that you would like to move</h2>
+		<h2>Click and drag the piece that you would like to move</h2>
 
 		<p><b><%= @player1.email %></b> vs <b><%= @player2.email %></b></p>
 		<div class="table-responsive">
@@ -72,5 +72,18 @@ $(function() {
 		      }		
 			});
   });
+</script>
+
+<script>
+$(function() {
+	var currentTime = <%= Time.now.to_i %>;
+	var push_moves_to = new Firebase("https://burning-heat-9967.firebaseio.com/games/game/moves");
+	var myFirebaseRef = new Firebase("https://burning-heat-9967.firebaseio.com/");
+		myFirebaseRef.child("games/<%= @game.id.to_s %>/").on("child_added", function(snapshot) {
+			console.log("we on fiyah!");
+		// window.location.href = "<%= url_for :controller => 'games', :action => 'show', :id => @game.id %>";
+
+		});
+});
 </script>
 

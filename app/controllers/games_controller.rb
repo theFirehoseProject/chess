@@ -8,7 +8,8 @@ class GamesController < ApplicationController
     new_opponent_id = game_params[:opponent_id]
     @game = Game.create(:opponent_id => new_opponent_id, :user_id => current_user.id)
     @game.initialize_the_board!
-    FIREBASE.push("games/" + @game.id.to_s , { :name => "true", :priority => 1 })
+    @name = "Game "+ @game.id.to_s
+    FIREBASE.push("https://burning-heat-9967.firebaseio.com/games/game/" + @game.id.to_s , { :name => @name, :priority => 1, :moves=>{}})
     redirect_to game_path(@game)
   end
 
@@ -38,19 +39,24 @@ class GamesController < ApplicationController
   end
 
   def move
+    
     @piece = Piece.find(params[:piece_id])
     if ! @piece.move_piece!(params[:x_coord], params[:y_coord])
       flash[:notice] = "That was not a valid move"
     else
       @piece.game.next_player
     end
-   
-    FIREBASE.push("games",{:game_id=> @game, :piece_id=> @piece.id, :x_coord=> @piece.x_coord, :y_coord=>@piece.y_coord})
+  # @game = Game.find(params[:id])  
+  # :game=> @game,
+
+
+   FIREBASE.update("https://burning-heat-9967.firebaseio.com/games/moves",{:game=> @game.id,:time=>Time.now.to_i, :piece_type=> @piece.type, :piece_id=> @piece.id, :x_coord=> @piece.x_coord, :y_coord=>@piece.y_coord})
     redirect_to game_path(@piece.game)
+
   end
 
  
-
+      
   private
 
 	def game_params
