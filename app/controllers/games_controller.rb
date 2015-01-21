@@ -9,7 +9,7 @@ class GamesController < ApplicationController
     @game = Game.create(:opponent_id => new_opponent_id, :user_id => current_user.id)
     @game.initialize_the_board!
     @name = "Game "+ @game.id.to_s
-    FIREBASE.push("https://burning-heat-9967.firebaseio.com/games/game/" + @game.id.to_s , { :name => @name, :priority => 1, :moves=>{}})
+    FIREBASE.push("/games/" + @game.id.to_s , { :name => @name, :priority => 1 })
     redirect_to game_path(@game)
   end
 
@@ -50,7 +50,7 @@ class GamesController < ApplicationController
   # :game=> @game,
 
 
-   FIREBASE.update("https://burning-heat-9967.firebaseio.com/games/moves",{:game=> @game.id,:time=>Time.now.to_i, :piece_type=> @piece.type, :piece_id=> @piece.id, :x_coord=> @piece.x_coord, :y_coord=>@piece.y_coord})
+   FIREBASE.push("/games/",{:game=> current_game.to_s, :time=>Time.now.to_i, :piece_type=> @piece.type, :piece_id=> @piece.id, :x_coord=> @piece.x_coord, :y_coord=>@piece.y_coord})
     redirect_to game_path(@piece.game)
 
   end
@@ -58,6 +58,10 @@ class GamesController < ApplicationController
  
       
   private
+
+  def current_game
+    @current_game ||= Game.find(params[:id])
+  end
 
 	def game_params
 		params.require(:game).permit(:opponent_id)
