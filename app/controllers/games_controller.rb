@@ -8,8 +8,8 @@ class GamesController < ApplicationController
     new_opponent_id = game_params[:opponent_id]
     @game = Game.create(:opponent_id => new_opponent_id, :user_id => current_user.id)
     @game.initialize_the_board!
-    @name = "Game "+ @game.id.to_s
-    FIREBASE.push("/games/" + @game.id.to_s , { :name => @name, :priority => 1 })
+    @name =  @game.id.to_s
+    FIREBASE.push("/games/" + @game.id.to_s , { :game => @name, :priority => 1 })
     redirect_to game_path(@game)
   end
 
@@ -50,7 +50,7 @@ class GamesController < ApplicationController
   # :game=> @game,
 
 
-   FIREBASE.push("/games/",{:game=> current_game.to_s, :time=>Time.now.to_i, :piece_type=> @piece.type, :piece_id=> @piece.id, :x_coord=> @piece.x_coord, :y_coord=>@piece.y_coord})
+   FIREBASE.push("/games/",{:game=> current_game.id.to_s, :time=>Time.now.to_i, :piece_type=> @piece.type, :piece_id=> @piece.id, :x_coord=> @piece.x_coord, :y_coord=>@piece.y_coord})
     redirect_to game_path(@piece.game)
 
   end
