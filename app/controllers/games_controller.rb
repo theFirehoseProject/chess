@@ -51,7 +51,7 @@ class GamesController < ApplicationController
 
 
    FIREBASE.push("/games/moves/",{:game=> current_game.id.to_s, :time=>Time.now.to_i, :piece_type=> @piece.type, :piece_id=> @piece.id, :x_coord=> @piece.x_coord, :y_coord=>@piece.y_coord})
-    # redirect_to game_path(@piece.game)
+    redirect_to game_path(@piece.game)
 
   end
 

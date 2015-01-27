@@ -79,27 +79,35 @@ $(function() {
 	
 
 
-	var myFirebaseRef = new Firebase("https://burning-heat-9967.firebaseio.com/");
-	// var movesRef = new Firebase("https://burning-heat-9967.firebaseio.com/games/moves/");
-		myFirebaseRef.child("games/<%= @game.id.to_s %>/").on("child_added", function(snapshot) {
-			var newGame = snapshot.val();
-			var currentTime = <%= Time.now.to_i %>;
-			if (newGame.time >= currentTime){
-			// console.log(newGame.game);
-			// console.log(newGame.time);
-			};
+	// var myFirebaseRef = new Firebase("https://burning-heat-9967.firebaseio.com/");
+	// // var movesRef = new Firebase("https://burning-heat-9967.firebaseio.com/games/moves/");
+	// 	myFirebaseRef.child("games/<%= @game.id.to_s %>/").on("child_added", function(snapshot) {
+	// 		var newGame = snapshot.val();
+	// 		var currentTime = <%= Time.now.to_i %>;
+	// 		if (newGame.time >= currentTime){
+	// 		// console.log(newGame.game);
+	// 		// console.log(newGame.time);
+	// 		};
 
-		// window.location.href = "<%= url_for :controller => 'games', :action => 'show', :id => @game.id %>";
-		});
+	// 	// window.location.href = "<%= url_for :controller => 'games', :action => 'show', :id => @game.id %>";
+	// 	});
 		var movesRef = new Firebase("https://burning-heat-9967.firebaseio.com/games/moves");
 				movesRef.on("child_added", function(snapshot) {
 
 					var newMove = snapshot.val();
 					var currentTime = <%= Time.now.to_i %>;
 			if (newMove.time >= currentTime){
-			// console.log(newMove.game);
+			console.log(newMove.game);
 			// console.log(newMove.time);		
-			window.location.href = "<%= url_for :controller => 'games', :action => 'show', :id => @game.id %>";
+			// window.location.href = "<%= url_for :controller => 'games', :action => 'show', :id => @game.id %>";
+var moved_piece = {piece_id : newMove.piece_id,
+										x_coord : newMove.x_coord,
+										y_coord : newMove.y_coord
+									 };
+					console.log(moved_piece);
+
+
+
 		};
 
 		});
