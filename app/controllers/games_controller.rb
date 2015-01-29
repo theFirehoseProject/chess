@@ -9,7 +9,7 @@ class GamesController < ApplicationController
     @game = Game.create(:opponent_id => new_opponent_id, :user_id => current_user.id)
     @game.initialize_the_board!
     @name =  @game.id.to_s
-    FIREBASE.push("/games/" + @game.id.to_s , { :game => @name, :time=>Time.now.to_i, :priority => 1 })
+    # FIREBASE.push("/games/" + @game.id.to_s , { :game => @name, :time=>Time.now.to_i, :priority => 1 })
     redirect_to game_path(@game)
   end
 
@@ -29,14 +29,14 @@ class GamesController < ApplicationController
     end    
   end
 
-  def select    
-    @game = Game.find(params[:id])
-    @pieces = @game.pieces
-    @piece = Piece.find(params[:piece_id])
-    @piece_id = params[:piece_id]
-    @x_coord = params[:x_coord]
-    @y_coord = params[:y_coord]
-  end
+  # def select    
+  #   @game = Game.find(params[:id])
+  #   @pieces = @game.pieces
+  #   @piece = Piece.find(params[:piece_id])
+  #   @piece_id = params[:piece_id]
+  #   @x_coord = params[:x_coord]
+  #   @y_coord = params[:y_coord]
+  # end
 
   def move
     
@@ -50,7 +50,8 @@ class GamesController < ApplicationController
   # :game=> @game,
 
 
-   FIREBASE.push("/games/moves/",{:game=> current_game.id.to_s, :time=>Time.now.to_i, :piece_type=> @piece.type, :piece_id=> @piece.id, :x_coord=> @piece.x_coord, :y_coord=>@piece.y_coord})
+   FIREBASE.push("/games/moves/",{:game=> current_game.id.to_s, :time=>Time.now.to_i, :image=>@piece.image, :piece_type=> @piece.type, :piece_id=> @piece.id, :x_coord=> @piece.x_coord, :y_coord=>@piece.y_coord})
+    
     redirect_to game_path(@piece.game)
 
   end

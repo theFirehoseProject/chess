@@ -1,7 +1,8 @@
 	<h1>Game#show</h1>
-	<% if @current_user_turn %>
-		<h2>Click and drag the piece that you would like to move</h2>
+<%# if @current_user_turn %>
 
+<div id='play' class="<%= @current_user_turn %>">		
+	<h2>Click and drag the piece that you would like to move</h2>
 		<p><b><%= @player1.email %></b> vs <b><%= @player2.email %></b></p>
 		<div class="table-responsive">
 		<table class="board table chess">
@@ -13,7 +14,7 @@
 				<td class="col-xs-1 space <%= column %><%= row %> <%= tile_color(first_tile_white, column) %>" id="<%= column %><%= row %>">
 					<% @pieces.each do |piece| %>
 					    <% if piece.x_coord == column && piece.y_coord == row && piece.color == @current_user_color %> 
-					    	<%= link_to image_tag(piece.image, :class=>"img-responsive moveable", :id=>piece.id), select_path( :piece_id => piece, :x_coord => piece.x_coord, :y_coord => piece.y_coord ) %>
+					    	<%= link_to image_tag(piece.image, :class=>"img-responsive moveable", :id=>piece.id) %>
 					    <% elsif piece.x_coord == column && piece.y_coord == row %>
 					    	<%= image_tag(piece.image, :class=>"img-responsive") %>
 					    <% end%>
@@ -25,8 +26,10 @@
 		<% end %>
 		</table>
 		</div>
-	<% else %>
-		<h2>Waiting for other player to move...</h2>
+</div>
+	<%# else %>
+<div id="wait" >		
+	<h2>Waiting for other player to move...</h2>
 
 		<p><b><%= @player1.email %></b> vs <b><%= @player2.email %></b></p>
 		<div class="table-responsive">
@@ -36,7 +39,7 @@
 		<% 7.downto(0) do |row| %>
 			<tr class="row row<%= row %>">
 			<% 0.upto(7) do |column| %>		
-				<td class="col-xs-1 space <%= column %><%= row %> <%= tile_color(first_tile_white, column) %>">
+				<td class="col-xs-1 space <%= column %><%= row %> <%= tile_color(first_tile_white, column) %>" id="<%= column %><%= row %>2">
 					<% @pieces.each do |piece| %>
 					    <% if piece.x_coord == column && piece.y_coord == row %> 
 					    	<%= image_tag(piece.image, :class=>"img-responsive") %>
@@ -49,7 +52,8 @@
 		<% end %>
 		</table>
 		</div>
-	<% end %>
+	</div>
+	<%#end %>
 
 <%= form_tag "#", :id => 'move'%>
 
@@ -68,7 +72,7 @@ $(function() {
 					$form.attr('action', path); 
 					console.log(path);
 					$form.submit();			
-		        	//alert("Piece " + piece_id + " dropped on tile: x= " + target_x + ", y= " + target_y);
+
 		      }		
 			});
   });
@@ -76,41 +80,41 @@ $(function() {
 
 <script>
 $(function() {
-	
+
+	           var playboard = $("div#play");
+	           var wait = $("div#wait");
+
+						if ($("div").hasClass("true")) {
+							playboard.show();
+							wait.hide();
+						} else if ($("div").hasClass("false")) {
+							playboard.hide();
+							wait.show();
+						}
 
 
-	// var myFirebaseRef = new Firebase("https://burning-heat-9967.firebaseio.com/");
-	// // var movesRef = new Firebase("https://burning-heat-9967.firebaseio.com/games/moves/");
-	// 	myFirebaseRef.child("games/<%= @game.id.to_s %>/").on("child_added", function(snapshot) {
-	// 		var newGame = snapshot.val();
-	// 		var currentTime = <%= Time.now.to_i %>;
-	// 		if (newGame.time >= currentTime){
-	// 		// console.log(newGame.game);
-	// 		// console.log(newGame.time);
-	// 		};
 
-	// 	// window.location.href = "<%= url_for :controller => 'games', :action => 'show', :id => @game.id %>";
-	// 	});
+
 		var movesRef = new Firebase("https://burning-heat-9967.firebaseio.com/games/moves");
-				movesRef.on("child_added", function(snapshot) {
-
+  		movesRef.on("child_added", function(snapshot) {
 					var newMove = snapshot.val();
 					var currentTime = <%= Time.now.to_i %>;
 			if (newMove.time >= currentTime){
-			console.log(newMove.game);
-			// console.log(newMove.time);		
-			// window.location.href = "<%= url_for :controller => 'games', :action => 'show', :id => @game.id %>";
-var moved_piece = {piece_id : newMove.piece_id,
-										x_coord : newMove.x_coord,
-										y_coord : newMove.y_coord
-									 };
-					console.log(moved_piece);
+           var moved_piece = {piece_id : newMove.piece_id,
+  										x_coord : newMove.x_coord,
+  										y_coord : newMove.y_coord,
+  										  image : newMove.image
+  									 };
 
+           moved_piece.x_coord = moved_piece.x_coord.toString();
+           moved_piece.y_coord = moved_piece.y_coord.toString();
+           var coords = moved_piece.x_coord + moved_piece.y_coord;
+           $td = $("#"+ coords + "2");
+           $td.html("hello<img src=/assets/" + moved_piece.image + " class='img-responsive' />");
+          
 
+  			};//currTime
 
-		};
-
-		});
-});
+  		});//movesRef call back
+});//parent
 </script>
-

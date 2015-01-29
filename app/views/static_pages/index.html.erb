@@ -1,15 +1,4 @@
 
-<h1>Hello and Welcome to Chesster!</h1>
-<script>
-	$(function() {
-		var myFirebaseRef = new Firebase("https://burning-heat-9967.firebaseio.com/");
+<h1>Hello and Welcome to Chester!</h1>
 
-		myFirebaseRef.child("firstFireItem").on("child_added", function(snapshot) {
-			var message = "Wee are on fiyah now!";
-			alert(message);
-			console.log(message);
-		});
-
-	});
-</script>
 
