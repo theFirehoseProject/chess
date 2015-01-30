@@ -27,17 +27,9 @@ class GamesController < ApplicationController
     else
       @current_user_turn = false
     end 
-    # FIREBASE.push("/games/",{:game=> current_game.id.to_s, :time=>Time.now.to_i, :pieces=>@pieces})   
+  
   end
 
-  # def select    
-  #   @game = Game.find(params[:id])
-  #   @pieces = @game.pieces
-  #   @piece = Piece.find(params[:piece_id])
-  #   @piece_id = params[:piece_id]
-  #   @x_coord = params[:x_coord]
-  #   @y_coord = params[:y_coord]
-  # end
 
   def move
     @pieces = current_game.pieces

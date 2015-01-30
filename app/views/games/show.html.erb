@@ -1,4 +1,4 @@
-	<h1>Game#show</h1>
+<!-- 	<h1>Game#show</h1> -->
 <%# if @current_user_turn %>
 
 <div id='play' class="<%= @current_user_turn %>">		
@@ -81,6 +81,7 @@ $(function() {
 <script>
 $(function() {
 
+
 	           var playboard = $("div#play");
 	           var wait = $("div#wait");
 
@@ -94,11 +95,25 @@ $(function() {
 	var currentTime = <%= Time.now.to_i %>;
 
 var origPieceLoc = new Firebase("https://burning-heat-9967.firebaseio.com/games/");
+
+
   		origPieceLoc.on("child_added", function(snapshot) {
   			var origPieceLocs = snapshot.val();
-  			if (newMove.time >= currentTime){
-  				
+  			if (origPieceLocs.time >= currentTime){
+					console.log(origPieceLocs.pieces);
+
+
   			}
+  		
+  			// for(i= 0; len = origPieceLocs.pieces.length-1; i < len; i++){
+  			// 	orig_piece_id = origPieceLocs.pieces[i].id;
+  			// 	orig_x = origPieceLocs.pieces[i].x_coord;
+  			// 	orig_y = origPieceLocs.pieces[i].y_coord;
+  			// 	if(){
+
+  			// 	}
+  			
+  			// }
 
   		});
 
@@ -107,6 +122,7 @@ var origPieceLoc = new Firebase("https://burning-heat-9967.firebaseio.com/games/
 					var newMove = snapshot.val();
 				
 			if (newMove.time >= currentTime){
+				console.log(newMove.x_coord);
            var moved_piece = {
 
 				           	 piece_id : newMove.piece_id,
