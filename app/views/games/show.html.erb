@@ -91,16 +91,25 @@ $(function() {
 							playboard.hide();
 							wait.show();
 						}
+	var currentTime = <%= Time.now.to_i %>;
 
+var origPieceLoc = new Firebase("https://burning-heat-9967.firebaseio.com/games/");
+  		origPieceLoc.on("child_added", function(snapshot) {
+  			var origPieceLocs = snapshot.val();
+  			if (newMove.time >= currentTime){
+  				
+  			}
 
-
+  		});
 
 		var movesRef = new Firebase("https://burning-heat-9967.firebaseio.com/games/moves");
   		movesRef.on("child_added", function(snapshot) {
 					var newMove = snapshot.val();
-					var currentTime = <%= Time.now.to_i %>;
+				
 			if (newMove.time >= currentTime){
-           var moved_piece = {piece_id : newMove.piece_id,
+           var moved_piece = {
+
+				           	 piece_id : newMove.piece_id,
   										x_coord : newMove.x_coord,
   										y_coord : newMove.y_coord,
   										  image : newMove.image
@@ -111,6 +120,7 @@ $(function() {
            var coords = moved_piece.x_coord + moved_piece.y_coord;
            $td = $("#"+ coords + "2");
            $td.html("hello<img src=/assets/" + moved_piece.image + " class='img-responsive' />");
+
           
 
   			};//currTime

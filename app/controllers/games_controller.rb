@@ -26,7 +26,8 @@ class GamesController < ApplicationController
       @current_user_turn = true
     else
       @current_user_turn = false
-    end    
+    end 
+    # FIREBASE.push("/games/",{:game=> current_game.id.to_s, :time=>Time.now.to_i, :pieces=>@pieces})   
   end
 
   # def select    
@@ -39,7 +40,8 @@ class GamesController < ApplicationController
   # end
 
   def move
-    
+    @pieces = current_game.pieces
+    FIREBASE.push("/games/",{:game=> current_game.id.to_s, :time=>Time.now.to_i, :pieces=>@pieces})
     @piece = Piece.find(params[:piece_id])
     if ! @piece.move_piece!(params[:x_coord], params[:y_coord])
       flash[:notice] = "That was not a valid move"
