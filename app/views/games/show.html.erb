@@ -101,21 +101,34 @@ var origPieceLoc = new Firebase("https://burning-heat-9967.firebaseio.com/games/
   			var origPieceLocs = snapshot.val();
   			if (origPieceLocs.time >= currentTime){
 					console.log(origPieceLocs.pieces);
+				
+				var coordsid = $("td").attr('id');
 
+				var len = origPieceLocs.pieces.length-1;
+				var len2 = coordsid.length-1
+  			for(var i = 0;  i < len2; i++){
+  				orig_piece_id = origPieceLocs.pieces[i].id;
+  				orig_x = origPieceLocs.pieces[i].x_coord;
+  				orig_y = origPieceLocs.pieces[i].y_coord;
+  				console.log(origPieceLocs.pieces[2].y_coord);
 
-  			}
-  		
-  			// for(i= 0; len = origPieceLocs.pieces.length-1; i < len; i++){
-  			// 	orig_piece_id = origPieceLocs.pieces[i].id;
-  			// 	orig_x = origPieceLocs.pieces[i].x_coord;
-  			// 	orig_y = origPieceLocs.pieces[i].y_coord;
-  			// 	if(){
+						// for(var j = 0;  i < len2; i++){
+						// 	if(coordsid[j] == orig_x + orig_y){
+						// 			console.log(coordsid[j])				
+						// 		$("td#").empty();
+	  			// 	 }
+	  			// 	}
+		  		};
 
-  			// 	}
-  			
-  			// }
-
+		  		 $("td").each(function(idx){
+  					if($(this).attr('id')==(orig_x + orig_y)){
+  					console.log($(this).attr('id'));
+  					}
+  				});
+		  
+				}
   		});
+
 
 		var movesRef = new Firebase("https://burning-heat-9967.firebaseio.com/games/moves");
   		movesRef.on("child_added", function(snapshot) {
