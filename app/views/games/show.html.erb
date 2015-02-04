@@ -99,29 +99,15 @@ var origPieceLoc = new Firebase("https://burning-heat-9967.firebaseio.com/games/
 	var currentTime = <%= Time.now.to_i %>;
 
 	origPieceLoc.on("child_added", function(snapshot) {
-		var origPieceLocs = snapshot.val();
-		if (origPieceLocs.time >= currentTime){
+		var movedFrom = snapshot.val();
+		if (movedFrom.time >= currentTime){
+			orig_x = movedFrom.x_coord.toString();
+			orig_y = movedFrom.y_coord.toString();
+			var orig_spaceLoc = orig_x + orig_y;
+			var orig_space = $("." + orig_spaceLoc);
+			orig_space.empty();
 
-
-		// 	var coordsid = $("td").attr('id');
-
-		// 	for(var i = 0;  i < len2; i++){
-		// 		orig_piece_id = origPieceLocs.pieces[i].id;
-		// 		orig_x = origPieceLocs.pieces[i].x_coord;
-		// 		orig_y = origPieceLocs.pieces[i].y_coord;
-
-		// 			for(var j = 0;  i < len2; i++){
-		// 				if(coordsid[j] == orig_x + orig_y){			
-		// 					$("td#").empty();
-		// 				}//if in inner for
-		// 			}//innner for
-		// 	};//outer for
-
-		// 	$("td").each(function(idx){
-		// 	if($(this).attr('id')==(orig_x + orig_y)){
-		// 	console.log($(this).attr('id'));
-		// 	}
-		// 	});
+		
 
 		}// end time if
 	});//end of origPiece on child added
@@ -129,6 +115,7 @@ var origPieceLoc = new Firebase("https://burning-heat-9967.firebaseio.com/games/
 
 var movesRef = new Firebase("https://burning-heat-9967.firebaseio.com/games/moves");
 movesRef.on("child_added", function(snapshot) {
+	var currentTime = <%= Time.now.to_i %>;
 var newMove = snapshot.val();
 
 if (newMove.time >= currentTime){
@@ -144,8 +131,12 @@ var moved_piece = {
 moved_piece.x_coord = moved_piece.x_coord.toString();
 moved_piece.y_coord = moved_piece.y_coord.toString();
 var coords = moved_piece.x_coord + moved_piece.y_coord;
-$td = $("#"+ coords + "2");
-$td.html("hello<img src=/assets/" + moved_piece.image + " class='img-responsive' />");
+cell = $("#wait").find("td."+coords);
+
+
+cell.html("hello<img src=/assets/" + moved_piece.image + " class='img-responsive' />");
+
+          
 
 
 
