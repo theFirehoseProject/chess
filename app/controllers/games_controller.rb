@@ -33,8 +33,11 @@ class GamesController < ApplicationController
 
   def move
     @pieces = current_game.pieces
-    FIREBASE.push("/games/",{:game=> current_game.id.to_s, :time=>Time.now.to_i, :pieces=>@pieces})
     @piece = Piece.find(params[:piece_id])
+   
+    FIREBASE.push("/games/",{:game=> current_game.id.to_s, :time=>Time.now.to_i, :x_coord=> @piece.x_coord, :y_coord=>@piece.y_coord})
+    # FIREBASE.push("/games/",{:game=> current_game.id.to_s, :time=>Time.now.to_i, :pieces=>@pieces})
+    # @piece = Piece.find(params[:piece_id])
     if ! @piece.move_piece!(params[:x_coord], params[:y_coord])
       flash[:notice] = "That was not a valid move"
     else

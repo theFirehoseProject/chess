@@ -103,25 +103,25 @@ var origPieceLoc = new Firebase("https://burning-heat-9967.firebaseio.com/games/
 		if (origPieceLocs.time >= currentTime){
 
 
-			var coordsid = $("td").attr('id');
+		// 	var coordsid = $("td").attr('id');
 
-			for(var i = 0;  i < len2; i++){
-				orig_piece_id = origPieceLocs.pieces[i].id;
-				orig_x = origPieceLocs.pieces[i].x_coord;
-				orig_y = origPieceLocs.pieces[i].y_coord;
+		// 	for(var i = 0;  i < len2; i++){
+		// 		orig_piece_id = origPieceLocs.pieces[i].id;
+		// 		orig_x = origPieceLocs.pieces[i].x_coord;
+		// 		orig_y = origPieceLocs.pieces[i].y_coord;
 
-					for(var j = 0;  i < len2; i++){
-						if(coordsid[j] == orig_x + orig_y){			
-							$("td#").empty();
-						}//if in inner for
-					}//innner for
-			};//outer for
+		// 			for(var j = 0;  i < len2; i++){
+		// 				if(coordsid[j] == orig_x + orig_y){			
+		// 					$("td#").empty();
+		// 				}//if in inner for
+		// 			}//innner for
+		// 	};//outer for
 
-			$("td").each(function(idx){
-			if($(this).attr('id')==(orig_x + orig_y)){
-			console.log($(this).attr('id'));
-			}
-			});
+		// 	$("td").each(function(idx){
+		// 	if($(this).attr('id')==(orig_x + orig_y)){
+		// 	console.log($(this).attr('id'));
+		// 	}
+		// 	});
 
 		}// end time if
 	});//end of origPiece on child added
