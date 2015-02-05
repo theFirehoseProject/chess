@@ -47,7 +47,7 @@ class GamesController < ApplicationController
   # :game=> @game,
 
 
-   FIREBASE.push("/games/moves/",{:game=> current_game.id.to_s, :time=>Time.now.to_i, :image=>@piece.image, :piece_type=> @piece.type, :piece_id=> @piece.id, :x_coord=> @piece.x_coord, :y_coord=>@piece.y_coord})
+   FIREBASE.push("/games/moves/",{:game=> current_game.id.to_s, :time=>Time.now.to_i, :image=>@piece.image, :piece_type=> @piece.type, :piece_id=> @piece.id, :x_coord=> @piece.x_coord, :y_coord=>@piece.y_coord, :color=>@piece.color})
    redirect_to game_path(@piece.game)
     # render "games/"+ @piece.game
 
@@ -57,6 +57,8 @@ class GamesController < ApplicationController
       
   private
 
+
+
   def current_game
     @current_game ||= Game.find(params[:id])
   end
@@ -64,6 +66,8 @@ class GamesController < ApplicationController
 	def game_params
 		params.require(:game).permit(:opponent_id)
 	end
+
+
 
 
 end

@@ -14,9 +14,9 @@
 				<td class="col-xs-1 space <%= column %><%= row %> <%= tile_color(first_tile_white, column) %>" id="<%= column %><%= row %>">
 					<% @pieces.each do |piece| %>
 					    <% if piece.x_coord == column && piece.y_coord == row && piece.color == @current_user_color %> 
-					    	<%= link_to image_tag(piece.image, :class=>"img-responsive moveable", :id=>piece.id) %>
+					    	<%= link_to image_tag(piece.image, :class=>"img-responsive moveable " + piece.color, :id=>piece.id) %>
 					    <% elsif piece.x_coord == column && piece.y_coord == row %>
-					    	<%= image_tag(piece.image, :class=>"img-responsive") %>
+					    	<%= image_tag(piece.image, :class=>"img-responsive", :id=>piece.id) %>
 					    <% end%>
 					<% end %>
 				</td>
@@ -42,7 +42,7 @@
 				<td class="col-xs-1 space <%= column %><%= row %> <%= tile_color(first_tile_white, column) %>" id="<%= column %><%= row %>">
 					<% @pieces.each do |piece| %>
 					    <% if piece.x_coord == column && piece.y_coord == row %> 
-					    	<%= image_tag(piece.image, :class=>"img-responsive") %>
+					    	<%= image_tag(piece.image, :class=>"img-responsive " + piece.color, :id=>piece.id) %>
 					    <% end%>
 					<% end %>
 				</td>
@@ -59,6 +59,7 @@
 
 
 <script>
+
 $(function() {
     $(".moveable").draggable();
 			$("td.space").droppable({
@@ -93,7 +94,9 @@ if ($("div").hasClass("true")) {
 	wait.show();
 	}
 
-// var currentTime = <%= Time.now.to_i %>;
+var message_play = "Click and drag the piece that you would like to move";
+var message_wait = "Waiting for other player to move...";
+var message_h = $("div > h2");
 
 var origPieceLoc = new Firebase("https://burning-heat-9967.firebaseio.com/games/");
 	var currentTime = <%= Time.now.to_i %>;
@@ -105,7 +108,7 @@ var origPieceLoc = new Firebase("https://burning-heat-9967.firebaseio.com/games/
 			orig_y = movedFrom.y_coord.toString();
 			var orig_spaceLoc = orig_x + orig_y;
 			var orig_space = $("." + orig_spaceLoc);
-			console.log(orig_space);
+
 			if ($("div").hasClass("false")){
 				orig_space.html("");
 			}
@@ -119,43 +122,64 @@ var origPieceLoc = new Firebase("https://burning-heat-9967.firebaseio.com/games/
 
 
 var movesRef = new Firebase("https://burning-heat-9967.firebaseio.com/games/moves");
-movesRef.on("child_added", function(snapshot) {
+	movesRef.on("child_added", function(snapshot) {
 	var currentTime = <%= Time.now.to_i %>;
-var newMove = snapshot.val();
+	var newMove = snapshot.val();
 
-if (newMove.time >= currentTime){
+		if (newMove.time >= currentTime){
 
-var moved_piece = {
+			var moved_piece = {
+          game_id : newMove.game,
+			 	 piece_id : newMove.piece_id,
+					x_coord : newMove.x_coord,
+					y_coord : newMove.y_coord,
+					  image : newMove.image,
+					  color : newMove.color
+				 };
 
- 	 piece_id : newMove.piece_id,
-		x_coord : newMove.x_coord,
-		y_coord : newMove.y_coord,
-		  image : newMove.image
-	 };
+			moved_piece.x_coord = moved_piece.x_coord.toString();
+			moved_piece.y_coord = moved_piece.y_coord.toString();
+			var coords = moved_piece.x_coord + moved_piece.y_coord;
+			var thisBoard = $("div#wait");//redundant see top o script
+			var thisTDs = thisBoard.find("td");
+			var cell = thisBoard.find("td."+coords);
+			
+			cell.html("hello<img src=/assets/" + moved_piece.image + " class='img-responsive' />");
+			message_h.html(message_play);
 
-moved_piece.x_coord = moved_piece.x_coord.toString();
-moved_piece.y_coord = moved_piece.y_coord.toString();
-var coords = moved_piece.x_coord + moved_piece.y_coord;
-var cell = $("#wait").find("td."+coords);
+			var color = "";
+			moved_piece.color == "black"? color = "white" : color = "black";
+			var pieces = thisBoard.find($("img."+ color));
+			pieces.addClass("moveable");
+			pieces.addClass("ui-draggable");
+			pieces.addClass("ui-draggable-handle");
+			pieces.css("position", "relative");
+		 
+			pieceHref = "games/" + moved_piece.game_id;
+			console.log("<a href='"+ pieceHref + "'></a>");
+		  pieces.wrap( "<a href='"+ pieceHref + "'></a>" );
+		  var dragDrop = function(){
+		  	    $(".moveable").draggable();
+			$("td.space").droppable({
+				drop: function( event, ui ) {
+					var drop_target_id = event.target.id;
+					var target_x = drop_target_id[0];
+					var target_y = drop_target_id[1];
+					var piece_id = ui.draggable.prop('id');
+					var path = "/games/<%= @game.id.to_s %>/" + piece_id + "/" + target_x + "/" + target_y;
+					var $form =  $('#move');
+					$form.attr('action', path); 
+					console.log(path);
+					$form.submit();			
 
+		      }		
+			});
+		  };
+		  dragDrop();
+			// window.location.href = "<%= url_for :controller => 'games', :action => 'show', :id => @game.id %>";
 
-cell.html("hello<img src=/assets/" + moved_piece.image + " class='img-responsive' />");
-// var reloader = function(){
-	window.location.href = "<%= url_for :controller => 'games', :action => 'show', :id => @game.id %>";
-// }
-// if (cell.length > 0){
-// console.log("yesss"); 
-// reloader();
-// }//just reload the not my turn player not sure this makea a diff
+		};//currTime
 
-
-
-
-
-
-
-};//currTime
-
-});//movesRef call back
+	});//movesRef call back
 });//parent
 </script>
