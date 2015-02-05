@@ -39,7 +39,7 @@
 		<% 7.downto(0) do |row| %>
 			<tr class="row row<%= row %>">
 			<% 0.upto(7) do |column| %>		
-				<td class="col-xs-1 space <%= column %><%= row %> <%= tile_color(first_tile_white, column) %>" id="<%= column %><%= row %>2">
+				<td class="col-xs-1 space <%= column %><%= row %> <%= tile_color(first_tile_white, column) %>" id="<%= column %><%= row %>">
 					<% @pieces.each do |piece| %>
 					    <% if piece.x_coord == column && piece.y_coord == row %> 
 					    	<%= image_tag(piece.image, :class=>"img-responsive") %>
@@ -105,7 +105,12 @@ var origPieceLoc = new Firebase("https://burning-heat-9967.firebaseio.com/games/
 			orig_y = movedFrom.y_coord.toString();
 			var orig_spaceLoc = orig_x + orig_y;
 			var orig_space = $("." + orig_spaceLoc);
-			orig_space.empty();
+			console.log(orig_space);
+			if ($("div").hasClass("false")){
+				orig_space.html("");
+			}
+
+
 
 		
 
@@ -119,7 +124,7 @@ movesRef.on("child_added", function(snapshot) {
 var newMove = snapshot.val();
 
 if (newMove.time >= currentTime){
-console.log(newMove.x_coord);
+
 var moved_piece = {
 
  	 piece_id : newMove.piece_id,
@@ -131,12 +136,21 @@ var moved_piece = {
 moved_piece.x_coord = moved_piece.x_coord.toString();
 moved_piece.y_coord = moved_piece.y_coord.toString();
 var coords = moved_piece.x_coord + moved_piece.y_coord;
-cell = $("#wait").find("td."+coords);
+var cell = $("#wait").find("td."+coords);
 
 
 cell.html("hello<img src=/assets/" + moved_piece.image + " class='img-responsive' />");
+// var reloader = function(){
+	window.location.href = "<%= url_for :controller => 'games', :action => 'show', :id => @game.id %>";
+// }
+// if (cell.length > 0){
+// console.log("yesss"); 
+// reloader();
+// }//just reload the not my turn player not sure this makea a diff
 
-          
+
+
+
 
 
 
