@@ -78,12 +78,7 @@ $(function() {
 				});
 			};
 		dragDrop();
-  });
-
-</script>
-
-<script>
-$(function() {
+//lines here
 
 
 var playboard = $("div#play");
@@ -156,6 +151,24 @@ var movesRef = new Firebase("https://burning-heat-9967.firebaseio.com/games/move
 			pieces.addClass("moveable");
 			var pieceHref = "games/" + moved_piece.game_id;
 		  pieces.wrap( "<a href='"+ pieceHref + "'></a>" );
+
+		 //  	var dragDrop = function(){
+
+   //  $(".moveable").draggable();
+			// $("td.space").droppable({
+			// 	drop: function( event, ui ) {
+			// 		var drop_target_id = event.target.id;
+			// 		var target_x = drop_target_id[0];
+			// 		var target_y = drop_target_id[1];
+			// 		var piece_id = ui.draggable.prop('id');
+			// 		var path = "/games/<%= @game.id.to_s %>/" + piece_id + "/" + target_x + "/" + target_y;
+			// 		var $form =  $('#move');
+			// 		$form.attr('action', path); 
+			// 		console.log(path);
+			// 		$form.submit();			
+			//       }		
+			// 	});
+			// };
 
 		  dragDrop();
 			// window.location.href = "<%= url_for :controller => 'games', :action => 'show', :id => @game.id %>";
