@@ -60,7 +60,7 @@
 
 <script>
 $(function() {
-	var dragDrop = function(){
+	var dragDrop = function(path){
 
     $(".moveable").draggable();
 			$("td.space").droppable({
@@ -77,6 +77,7 @@ $(function() {
 			      }		
 				});
 			};
+
 		dragDrop();
 //lines here
 
@@ -138,37 +139,19 @@ var movesRef = new Firebase("https://burning-heat-9967.firebaseio.com/games/move
 			moved_piece.x_coord = moved_piece.x_coord.toString();
 			moved_piece.y_coord = moved_piece.y_coord.toString();
 			var coords = moved_piece.x_coord + moved_piece.y_coord;
-			var thisBoard = $("div#wait");//redundant see top o script
-			var thisTDs = thisBoard.find("td");
-			var cell = thisBoard.find("td."+coords);
-			
-			cell.html("hello<img src=/assets/" + moved_piece.image + " class='img-responsive' />");
+			var waitTwo = $("div#wait");
+			var cell = waitTwo.find("td."+coords);
+			cell.html("<img src=/assets/" + moved_piece.image + " class='img-responsive' />");//include 'hello' in html string to test that DOM is getting data from Firebase
 			message_h.html(message_play);
-
 			var color = "";
 			moved_piece.color == "black"? color = "white" : color = "black";
-			var pieces = thisBoard.find($("img."+ color));
+			var pieces = waitTwo.find($("img."+ color));
 			pieces.addClass("moveable");
 			var pieceHref = "games/" + moved_piece.game_id;
 		  pieces.wrap( "<a href='"+ pieceHref + "'></a>" );
+		  
 
-		 //  	var dragDrop = function(){
 
-   //  $(".moveable").draggable();
-			// $("td.space").droppable({
-			// 	drop: function( event, ui ) {
-			// 		var drop_target_id = event.target.id;
-			// 		var target_x = drop_target_id[0];
-			// 		var target_y = drop_target_id[1];
-			// 		var piece_id = ui.draggable.prop('id');
-			// 		var path = "/games/<%= @game.id.to_s %>/" + piece_id + "/" + target_x + "/" + target_y;
-			// 		var $form =  $('#move');
-			// 		$form.attr('action', path); 
-			// 		console.log(path);
-			// 		$form.submit();			
-			//       }		
-			// 	});
-			// };
 
 		  dragDrop();
 			// window.location.href = "<%= url_for :controller => 'games', :action => 'show', :id => @game.id %>";
