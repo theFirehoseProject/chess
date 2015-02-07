@@ -1,7 +1,8 @@
-	<h1>Game#show</h1>
-	<% if @current_user_turn %>
-		<h2>Click on the piece that you would like to move</h2>
+<!-- 	<h1>Game#show</h1> -->
+<%# if @current_user_turn %>
 
+<div id='play' class="<%= @current_user_turn %>">		
+	<h2>Click and drag the piece that you would like to move</h2>
 		<p><b><%= @player1.email %></b> vs <b><%= @player2.email %></b></p>
 		<div class="table-responsive">
 		<table class="board table chess">
@@ -13,9 +14,9 @@
 				<td class="col-xs-1 space <%= column %><%= row %> <%= tile_color(first_tile_white, column) %>" id="<%= column %><%= row %>">
 					<% @pieces.each do |piece| %>
 					    <% if piece.x_coord == column && piece.y_coord == row && piece.color == @current_user_color %> 
-					    	<%= link_to image_tag(piece.image, :class=>"img-responsive moveable", :id=>piece.id), select_path( :piece_id => piece, :x_coord => piece.x_coord, :y_coord => piece.y_coord ) %>
+					    	<%= link_to image_tag(piece.image, :class=>"img-responsive moveable " + piece.color, :id=>piece.id) %>
 					    <% elsif piece.x_coord == column && piece.y_coord == row %>
-					    	<%= image_tag(piece.image, :class=>"img-responsive") %>
+					    	<%= image_tag(piece.image, :class=>"img-responsive", :id=>piece.id) %>
 					    <% end%>
 					<% end %>
 				</td>
@@ -25,8 +26,10 @@
 		<% end %>
 		</table>
 		</div>
-	<% else %>
-		<h2>Waiting for other player to move...</h2>
+</div>
+	<%# else %>
+<div id="wait" >		
+	<h2>Waiting for other player to move...</h2>
 
 		<p><b><%= @player1.email %></b> vs <b><%= @player2.email %></b></p>
 		<div class="table-responsive">
@@ -36,10 +39,10 @@
 		<% 7.downto(0) do |row| %>
 			<tr class="row row<%= row %>">
 			<% 0.upto(7) do |column| %>		
-				<td class="col-xs-1 space <%= column %><%= row %> <%= tile_color(first_tile_white, column) %>">
+				<td class="col-xs-1 space <%= column %><%= row %> <%= tile_color(first_tile_white, column) %>" id="<%= column %><%= row %>">
 					<% @pieces.each do |piece| %>
 					    <% if piece.x_coord == column && piece.y_coord == row %> 
-					    	<%= image_tag(piece.image, :class=>"img-responsive") %>
+					    	<%= image_tag(piece.image, :class=>"img-responsive " + piece.color, :id=>piece.id) %>
 					    <% end%>
 					<% end %>
 				</td>
@@ -49,27 +52,112 @@
 		<% end %>
 		</table>
 		</div>
-	<% end %>
+	</div>
+	<%#end %>
 
 <%= form_tag "#", :id => 'move'%>
 
 
 <script>
 $(function() {
+	var dragDrop = function(path){
+
     $(".moveable").draggable();
-	$("td.space").droppable({
-		drop: function( event, ui ) {
-			var drop_target_id = event.target.id;
-			var target_x = drop_target_id[0];
-			var target_y = drop_target_id[1];
-			var piece_id = ui.draggable.prop('id');
-			var path = "/games/<%= @game.id.to_s %>/" + piece_id + "/" + target_x + "/" + target_y;
-			var $form =  $('#move');
-			$form.attr('action', path); 
-			console.log(path);
-			$form.submit();			
-        	//alert("Piece " + piece_id + " dropped on tile: x= " + target_x + ", y= " + target_y);
-      }		
-	});
-  });
+			$("td.space").droppable({
+				drop: function( event, ui ) {
+					var drop_target_id = event.target.id;
+					var target_x = drop_target_id[0];
+					var target_y = drop_target_id[1];
+					var piece_id = ui.draggable.prop('id');
+					var path = "/games/<%= @game.id.to_s %>/" + piece_id + "/" + target_x + "/" + target_y;
+					var $form =  $('#move');
+					$form.attr('action', path); 
+					console.log(path);
+					$form.submit();			
+			      }		
+				});
+			};
+
+		dragDrop();
+//lines here
+
+
+var playboard = $("div#play");
+var wait = $("div#wait");
+
+if ($("div").hasClass("true")) {
+	playboard.show();
+	wait.hide();
+	} else if ($("div").hasClass("false")) {
+	playboard.hide();
+	wait.show();
+	}
+
+var message_play = "Click and drag the piece that you would like to move";
+var message_wait = "Waiting for other player to move...";
+var message_h = $("div > h2");
+
+var origPieceLoc = new Firebase("https://burning-heat-9967.firebaseio.com/games/");
+	var currentTime = <%= Time.now.to_i %>;
+
+	origPieceLoc.on("child_added", function(snapshot) {
+		var movedFrom = snapshot.val();
+		if (movedFrom.time >= currentTime){
+			orig_x = movedFrom.x_coord.toString();
+			orig_y = movedFrom.y_coord.toString();
+			var orig_spaceLoc = orig_x + orig_y;
+			var orig_space = $("." + orig_spaceLoc);
+
+			if ($("div").hasClass("false")){
+				orig_space.html("");
+			}
+
+
+
+		
+
+		}// end time if
+	});//end of origPiece on child added
+
+
+var movesRef = new Firebase("https://burning-heat-9967.firebaseio.com/games/moves");
+	movesRef.on("child_added", function(snapshot) {
+	var currentTime = <%= Time.now.to_i %>;
+	var newMove = snapshot.val();
+
+		if (newMove.time >= currentTime){
+
+			var moved_piece = {
+          game_id : newMove.game,
+			 	 piece_id : newMove.piece_id,
+					x_coord : newMove.x_coord,
+					y_coord : newMove.y_coord,
+					  image : newMove.image,
+					  color : newMove.color
+				 };
+
+			moved_piece.x_coord = moved_piece.x_coord.toString();
+			moved_piece.y_coord = moved_piece.y_coord.toString();
+			var coords = moved_piece.x_coord + moved_piece.y_coord;
+			var waitTwo = $("div#wait");
+			var cell = waitTwo.find("td."+coords);
+			cell.html("<img src=/assets/" + moved_piece.image + " class='img-responsive' />");//include 'hello' in html string to test that DOM is getting data from Firebase
+			message_h.html(message_play);
+			var color = "";
+			moved_piece.color == "black"? color = "white" : color = "black";
+			var pieces = waitTwo.find($("img."+ color));
+			pieces.addClass("moveable");
+			var pieceHref = "games/" + moved_piece.game_id;
+		  pieces.wrap( "<a href='"+ pieceHref + "'></a>" );
+		  
+
+
+
+		  dragDrop();
+			// window.location.href = "<%= url_for :controller => 'games', :action => 'show', :id => @game.id %>";
+
+		};//currTime
+
+	});//movesRef call back
+});//parent
 </script>

@@ -16,4 +16,7 @@
 
 //= require_tree .
 
-//= require jquery-ui
+//= require jquery-ui/widget
+//= require jquery-ui/mouse
+//= require jquery-ui/draggable
+//= require jquery-ui/droppable

@@ -1,0 +1,13 @@
+	<%= link_to image_tag(piece.image, :class=>"img-responsive moveable", :id=>piece.id) %>
+
+
+
+
+	<td class="col-xs-1 space 41 white ui-droppable" id="41">
+					    	<a href="/games/219"><img alt="White pawn" class="img-responsive moveable ui-draggable ui-draggable-handle" id="6797" src="/assets/white-pawn.gif" style="position: relative;"></a>
+				</td>
+
+	1=> change out message EASY
+	2=> add moveable class to images  for this player ???
+	3=> add piece.id to each image ???
+	4=> add link to image for drag/drop that has this game id
